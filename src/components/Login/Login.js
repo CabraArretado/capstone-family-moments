@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import {
     Jumbotron,
     Button,
@@ -9,28 +9,40 @@ import {
     Input
 } from 'reactstrap';
 
-//TODO
+// moods
+import API from "../../module/dataManager.js"
+import { Comeback } from "../../Helpers"
 
 const Login = (props) => {
 
-    const [credentials, setCredentials] = useState({ username: "", email: "", password: "", id: "" });
+    const [credentials, setCredentials] = useState({email: "", password: ""});
 
     const handleChange = (e) => {
         let stateToChange = { ...credentials };
         stateToChange[e.target.id] = e.target.value;
+        console.log(stateToChange)
         setCredentials(stateToChange)
     }
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        props.setUser(credentials)
-        console.log(credentials)
-        props.history.push("/");
+        let tempo = await API.getWhere("users", "email", credentials.email)
+
+        // Checks if e-mail exist and 
+        if (tempo.length === 1 && credentials.password === tempo[0].password) {
+            console.log(tempo[0])
+            props.setUserLogin(tempo[0])
+            props.history.push("/");
+        } else {
+            alert("Email or password wrong!")
+            return <Redirect to="/login" />
+        }
     }
 
     return <>
         <div className="container d-flex justify-content-center">
             <Jumbotron className="superbox mt-5">
+            <Comeback />
                 <h1 className="display-3">Log In</h1>
                 <Form onSubmit={handleLogin}>
                     <FormGroup>
@@ -39,7 +51,7 @@ const Login = (props) => {
                     </FormGroup>
                     <FormGroup>
                         <Label for="password">Password</Label>
-                        <Input className="" type="password" name="password" id="password" placeholder="Password" />
+                        <Input className="" onChange={handleChange} type="password" name="password" id="password" placeholder="Password" />
                     </FormGroup>
                     <Button type="submit" className="">Login</Button>
                 </Form>

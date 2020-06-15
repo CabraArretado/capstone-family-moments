@@ -13,8 +13,8 @@ import Login from "./Login/Login"
 
 const ApplicationViews = (props) => {
     // User
-    const hasUser = props.hasUser;
-    const setUser = props.setUser;
+    const setUserRegister = props.setUserRegister;
+    const setUserLogin = props.setUserLogin;
 
 
 
@@ -32,7 +32,7 @@ const ApplicationViews = (props) => {
                 exact
                 path="/register"
                 render={props => {
-                    return <Register setUser={setUser} {...props} />;
+                    return <Register setUserRegister={setUserRegister} {...props} />;
                 }}
             />
 
@@ -40,7 +40,7 @@ const ApplicationViews = (props) => {
                 exact
                 path="/login"
                 render={props => {
-                    return <Login setUser={setUser} {...props} />;
+                    return <Login setUserLogin={setUserLogin} {...props} />;
                 }}
             />
 

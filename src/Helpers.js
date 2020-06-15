@@ -13,3 +13,8 @@ export const Comeback = () => {
     </>
   );
 };
+
+export const setStorageSession = (user) => {
+  sessionStorage.setItem("userId", user.id)
+  sessionStorage.setItem("userName", user.username)
+}

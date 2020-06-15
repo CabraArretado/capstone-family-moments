@@ -44,6 +44,7 @@ const Register = (props) => {
         }
         else {
             let data = await createUser(credentials)
+            console.log(data)
             props.setUserRegister(data)
             props.history.push("/");
         }

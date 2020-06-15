@@ -76,5 +76,11 @@ export default {
     async getUserId(email) {
         let data = await fetch(`${remoteURL}/users?email=${email}`).then(data => data.json())
         return data
+    },
+
+    async getWhere(list, key, value) {
+        let data = await fetch(`${remoteURL}/${list}?${key}=${value}`)
+        data = data.json()
+        return data
     }
 }
