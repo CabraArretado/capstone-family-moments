@@ -6,14 +6,14 @@ import {
     Form,
     FormGroup,
     Label,
-    Input,
-    Col
+    Input
 } from 'reactstrap';
 
+//TODO
 
 const Login = (props) => {
 
-    const [credentials, setCredentials] = useState({username:"", email: "", password: "", id:""});
+    const [credentials, setCredentials] = useState({ username: "", email: "", password: "", id: "" });
 
     const handleChange = (e) => {
         let stateToChange = { ...credentials };
@@ -34,14 +34,14 @@ const Login = (props) => {
                 <h1 className="display-3">Log In</h1>
                 <Form onSubmit={handleLogin}>
                     <FormGroup>
-                        <Label for="username">Username</Label>
-                        <Input className="" onChange={handleChange} type="text" name="username" id="username" placeholder="Username" />
+                        <Label for="email">Email</Label>
+                        <Input onChange={handleChange} type="email" name="email" id="email" placeholder="Email" />
                     </FormGroup>
                     <FormGroup>
                         <Label for="password">Password</Label>
                         <Input className="" type="password" name="password" id="password" placeholder="Password" />
                     </FormGroup>
-                    <Button type="submit" className="">Register</Button>
+                    <Button type="submit" className="">Login</Button>
                 </Form>
             </Jumbotron>
         </div>
