@@ -11,7 +11,7 @@ import {
 
 // moods
 import API from "../../module/dataManager.js"
-import { Comeback } from "../../Helpers"
+import { Comeback, inUse } from "../../Helpers"
 
 const Register = (props) => {
 
@@ -36,7 +36,10 @@ const Register = (props) => {
     // Register the user and log him in
     const handleRegister = async (e) => {
         e.preventDefault();
-        if (!credentials.username || !credentials.password || !credentials.email) {
+        if (await inUse(credentials, "email")) {
+            alert("Email already cadastred!")
+        }
+        else if (!credentials.username || !credentials.password || !credentials.email) {
             alert("Please, provide all the information in order to create a account")
         }
         else if (credentials.password !== confirmation) {
@@ -44,7 +47,6 @@ const Register = (props) => {
         }
         else {
             let data = await createUser(credentials)
-            console.log(data)
             props.setUserRegister(data)
             props.history.push("/");
         }
