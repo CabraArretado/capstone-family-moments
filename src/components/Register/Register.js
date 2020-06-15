@@ -1,0 +1,88 @@
+import React, {useState}from 'react';
+import { Link } from "react-router-dom";
+import {
+    Jumbotron,
+    Button,
+    Form,
+    FormGroup,
+    Label,
+    Input
+} from 'reactstrap';
+
+// moods
+import API from "../../module/dataManager.js"
+import { Comeback } from "../../Helpers"
+
+const Register = (props) => {
+
+    const [credentials, setCredentials] = useState({ username: "" , email: "", password: "" });
+    const [confirmation, setConfirmation] = useState(null);
+
+    // Handle changes in the username, email, password
+    const handleChange = (e) => {
+        let stateToChange = {...credentials};
+        stateToChange[e.target.id] = e.target.value;
+        console.log(stateToChange)
+        setCredentials(stateToChange)
+    }
+
+    // Handle password cofirmation changes
+    const handleConfirmation = (e) => {
+        let stateToChange = confirmation;
+        stateToChange = e.target.value;
+        setConfirmation(stateToChange)
+    }
+
+    // Register the user and log him in
+    const handleRegister = async (e) => {
+        e.preventDefault();
+        if (!credentials.username || !credentials.password || !credentials.email) {
+            alert("Please, provide all the information in order to create a account")
+        }
+        else if (credentials.password !== confirmation) {
+            alert("Password and confirmation don't match")
+        }
+        else {
+            let data = await createUser(credentials)
+            props.setUserRegister(data)
+            props.history.push("/");
+        }
+    }
+
+    // Register the use in the DB
+    const createUser = (obj) => {
+            return API.post("users", obj)
+    }
+
+    return <>
+        <Comeback />
+        <Jumbotron className="container mt-5">
+            <h1 className="display-3">Register Account</h1>
+            <p>To have acess to the app you must create an account!</p>
+            <hr />
+            <Form onSubmit={handleRegister}>
+                <FormGroup>
+                    <Label for="username">Username</Label>
+                    <Input onChange={handleChange} type="text" name="username" id="username" placeholder="Username" />
+                </FormGroup>
+                <FormGroup>
+                    <Label for="email">Email</Label>
+                    <Input onChange={handleChange} type="email" name="email" id="email" placeholder="Email" />
+                </FormGroup>
+                <div className="form-row">
+                    <FormGroup className="col-6">
+                        <Label for="password">Password</Label>
+                        <Input onChange={handleChange} type="password" name="password" id="password" placeholder="Password" />
+                    </FormGroup>
+                    <FormGroup className="col-6">
+                        <Label for="confirmationInput">Confirm password</Label>
+                        <Input onChange={handleConfirmation} type="password" name="confirmation" id="confirmationInput" placeholder="Confirm your password" />
+                    </FormGroup>
+                </div>
+                <Button type="submit" className="">Register</Button>
+            </Form>
+        </Jumbotron>
+    </>
+};
+
+export default Register;
