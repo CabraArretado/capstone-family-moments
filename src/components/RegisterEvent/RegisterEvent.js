@@ -17,7 +17,7 @@ const RegisterEvent = (props) => {
     const [isLoading, setIsLoading] = useState(false)
     const [informacao, setInformacao] = useState({
         name: "" , 
-        userId: sessionStorage.getItem("userId"), 
+        userId: "", 
         address: "", 
         date: "", 
         time: "", 
