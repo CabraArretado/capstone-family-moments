@@ -1,19 +1,19 @@
-import { Route, Redirect } from "react-router-dom";
+import { Route, Redirect, Link } from "react-router-dom";
 import React from "react"
 
 // Moods
 import Welcome from "./Welcome/Welcome"
 import Register from "./Register/Register"
 import Login from "./Login/Login"
-// import Welcome from "./Welcome/Welcome"
-// import Welcome from "./Welcome/Welcome"
-// import Welcome from "./Welcome/Welcome"
+import HomeClean from "./HomeClean/HomeClean"
+import RegisterEvent from "./RegisterEvent/RegisterEvent"
+import JoinEvent from "./JoinEvent/JoinEvent"
 // import Welcome from "./Welcome/Welcome"
 // import Welcome from "./Welcome/Welcome"
 
 const ApplicationViews = (props) => {
     // User
-    const setUserRegister = props.setUserRegister;
+    const setUser = props.setUser;
     const setUserLogin = props.setUserLogin;
 
 
@@ -28,11 +28,12 @@ const ApplicationViews = (props) => {
                 }}
             />
 
+
             <Route
                 exact
                 path="/register"
                 render={props => {
-                    return <Register setUserRegister={setUserRegister} {...props} />;
+                    return <Register setUser={setUser} {...props} />;
                 }}
             />
 
@@ -44,6 +45,14 @@ const ApplicationViews = (props) => {
                 }}
             />
 
+{/* TESTE PAGE */}
+            <Route
+                exact
+                path="/tests"
+                render={props => {
+                    return <JoinEvent {...props} />;
+                }}
+            />
         </>
     );
 };

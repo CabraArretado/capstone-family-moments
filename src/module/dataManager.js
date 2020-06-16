@@ -24,14 +24,16 @@ export default {
     },
 
     // POST
-    post(list, newData) {
-        return fetch(`${remoteURL}/${list}`, {
+    async post(list, newData) {
+        let i = await fetch(`${remoteURL}/${list}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(newData)
-        }).then(data => data.json())
+        })
+        i = i.json()
+        return i
     },
 
     // GET list expanded //

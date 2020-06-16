@@ -2,7 +2,7 @@ import React from 'react';
 import { Jumbotron, Button } from 'reactstrap';
 import { Link } from "react-router-dom";
 
-const Home = (props) => {
+const Welcome = (props) => {
     return (
         <div>
             <Jumbotron className="container mt-5">
@@ -29,4 +29,4 @@ const Home = (props) => {
     );
 };
 
-export default Home;
+export default Welcome;

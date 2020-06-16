@@ -13,7 +13,7 @@ import {
 import API from "../../module/dataManager.js"
 import { Comeback, inUse, generalHandleChanges } from "../../Helpers"
 
-const Register = (props) => {
+const JoinEvent = (props) => {
 
     const [credentials, setCredentials] = useState({ username: "" , email: "", password: "" });
     const [confirmation, setConfirmation] = useState(null);
@@ -85,4 +85,4 @@ const Register = (props) => {
     </>
 };
 
-export default Register;
+export default JoinEvent;

@@ -1,12 +1,13 @@
   
 import React, {useState} from 'react';
+import { Link } from "react-router-dom";
 
 // Moods
 import ApplicationViews from './components/ApplicationViews';
 import API from './module/dataManager'
 import { setStorageSession } from './Helpers'
 
-function FamilyMoments() {
+function FamilyMoments(props) {
 
   /*                start LOGIN FEATURES                           */
 
@@ -20,7 +21,7 @@ function FamilyMoments() {
   };
 
   // Set the user ID in the register
-  const setUserRegister = (user) => {
+  const setUser = (user) => {
     setStorageSession(user)
     setHasUser(isAuthenticated());
   }
@@ -28,7 +29,8 @@ function FamilyMoments() {
   /*                end LOGIN FEATURES                           */
 
 return  <>
-  <ApplicationViews setUserLogin={setUserLogin} setUserRegister={setUserRegister} hasUser={hasUser} /> 
+  <Link to="/tests"><button>TESTS</button></Link> {/* TEST BUTTON USED TO DEVELOPMENT*/}
+  <ApplicationViews setUserLogin={setUserLogin} setUser={setUser} hasUser={hasUser} /> 
   </>
 }
 export default FamilyMoments;
