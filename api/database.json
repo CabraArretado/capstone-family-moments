@@ -20,5 +20,16 @@
     }
   ],
   "messages": [],
-  "events": []
+  "events": [
+    {
+      "name": "Felipe Bday",
+      "userId": 5,
+      "address": "Felipe's",
+      "date": "2020-06-18",
+      "time": "03:53",
+      "description": "Felipe's bday",
+      "eventcode": "smiths",
+      "id": 1
+    }
+  ]
 }

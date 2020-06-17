@@ -45,6 +45,14 @@ const ApplicationViews = (props) => {
                 }}
             />
 
+            <Route
+                exact
+                path="/registerevent"
+                render={props => {
+                    return <RegisterEvent {...props} />;
+                }}
+            />
+
 {/* TESTE PAGE */}
             <Route
                 exact

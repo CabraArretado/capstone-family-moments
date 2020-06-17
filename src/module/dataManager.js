@@ -40,6 +40,11 @@ export default {
     getExpanded(toExpand, otherList) {
         return fetch(`${remoteURL}/${toExpand}?_expand=${otherList.toLowerCase()}`).then(result => result.json())
     },
+    // GET one item toEmbed 
+    async getOneExpanded(toExpand, otherList, id) {
+        let i = await fetch(`${remoteURL}/${toExpand}/${id}?_expand=${otherList.toLowerCase()}`).then(result => result.json())
+        return i
+    },
 
     // GET list expanded 
     getEmbed(toEmbed, otherList) {
@@ -49,10 +54,8 @@ export default {
     // GET one item toEmbed 
     async getOneEmbed(toEmbed, otherList, id) {
         let i = await fetch(`${remoteURL}/${toEmbed}/${id}?_embed=${otherList.toLowerCase()}`).then(result => result.json())
-        console.log(i)
         return i
     },
-
 
     // PUT curent data
     put(list, id, newObj) {
@@ -75,13 +78,23 @@ export default {
             });
     },
 
+
+    //get userId by email
     async getUserId(email) {
         let data = await fetch(`${remoteURL}/users?email=${email}`).then(data => data.json())
         return data
     },
 
+    // Get a obj in the list with specific value
     async getWhere(list, key, value) {
         let data = await fetch(`${remoteURL}/${list}?${key}=${value}`)
+        data = data.json()
+        return data
+    },
+
+    //
+    async getWhereExpand(list, key, value, otherList) {
+        let data = await fetch(`${remoteURL}/${list}?${key}=${value}_expand=${otherList}`)
         data = data.json()
         return data
     }

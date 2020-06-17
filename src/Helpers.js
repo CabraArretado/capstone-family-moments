@@ -46,3 +46,20 @@ export const generalHandleChanges = (event, array, setArray) => {
       console.log("stateToChange: ", stateToChange)
       setArray(stateToChange)
   }
+
+  // Get user Id from session and parse to int
+export const getSessionUserId = () => {
+  return parseInt(sessionStorage.getItem("userId"))
+}
+
+
+// Get user name from session storage
+export const getSessionUserName = () => {
+  return parseInt(sessionStorage.getItem("userName"))
+}
+
+// Transform date in a Date obj
+export const passDate = (date) => {
+  date = new Date(date)
+  return date
+}

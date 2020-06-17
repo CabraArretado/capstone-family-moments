@@ -11,15 +11,18 @@ import {
 
 // moods
 import API from "../../module/dataManager.js"
-import { Comeback, inUse, generalHandleChanges } from "../../Helpers"
+import { 
+    Comeback
+}
+from "../../Helpers"
 
 const JoinEvent = (props) => {
     const [isLoading, setIsLoading] = useState(false)
     const [isEventLoaded, setIsEventLoaded] = useState(false)
-    const [eventCode, setEventCode] = useState(null);
+    const [eventCode, setEventCode] = useState("");
     const [event, setEvent] = useState({
         name: "" , 
-        userId: "", 
+        userId: null, 
         address: "", 
         date: "", 
         time: "", 
@@ -29,7 +32,9 @@ const JoinEvent = (props) => {
 
     // Handle changes in the username, email, password
     const handleChange = (e) => {
-        generalHandleChanges(e, eventCode, setEventCode)
+        let stateToChange = eventCode
+        stateToChange = e.target.value
+        setEventCode(stateToChange)
     }
 
     // Search for event code
@@ -72,8 +77,12 @@ const JoinEvent = (props) => {
             isEventLoaded && <div>
                 <div>
                     <h4>{event.name}</h4>
-                    <span><h5>{event.data}</h5></span>
+                    <h6>by: {}</h6>
+                    <h5>{event.date} at {event.time}</h5>
+                    <h5>Address: <span>{event.address}</span> </h5>
+                    <h5> {event.description} </h5>
                 </div>
+                <Link to="/JoinEventRegister"><button>Join!</button></Link>
             </div>
             }
         </Jumbotron>

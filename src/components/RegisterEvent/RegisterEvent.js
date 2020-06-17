@@ -1,5 +1,5 @@
 import React, {useState}from 'react';
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import {
     Jumbotron,
     Button,
@@ -11,13 +11,19 @@ import {
 
 // moods
 import API from "../../module/dataManager.js"
-import { Comeback, inUse, generalHandleChanges, setStorageEvent } from "../../Helpers"
+import { 
+    Comeback, 
+    inUse, 
+    generalHandleChanges, 
+    setStorageEvent, 
+    getSessionUserId
+} from "../../Helpers"
 
 const RegisterEvent = (props) => {
     const [isLoading, setIsLoading] = useState(false)
     const [informacao, setInformacao] = useState({
         name: "" , 
-        userId: "", 
+        userId: getSessionUserId(), 
         address: "", 
         date: "", 
         time: "", 
@@ -39,6 +45,8 @@ const RegisterEvent = (props) => {
         } else if ( await inUse("events", informacao, "eventcode")){
             alert("EVENT CODE already in use. Please choose other!")
             setIsLoading(false)
+        }else if (informacao.userId !== 0) {    
+            Redirect("/Login")
         } else {
             let data = await API.post("events", informacao)
             setStorageEvent(data)
