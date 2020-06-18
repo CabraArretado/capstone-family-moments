@@ -39,11 +39,18 @@
       "id": 1
     }
   ],
-  "participation": [
+  "participations": [
     {
       "id": 1,
       "userId": 5,
       "eventId": 1
+    },
+    {
+      "userId": 8,
+      "address": "das",
+      "phone": "dasdas",
+      "message": "dasd",
+      "id": 2
     }
   ]
 }
