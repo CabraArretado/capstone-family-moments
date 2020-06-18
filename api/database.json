@@ -17,6 +17,13 @@
       "email": "fm@aa",
       "password": "a",
       "id": 7
+    },
+    {
+      "firstname": "Felipe",
+      "lastname": "Smith",
+      "email": "felipe@usa",
+      "password": "a",
+      "id": 8
     }
   ],
   "messages": [],
@@ -30,6 +37,13 @@
       "description": "Felipe's bday",
       "eventcode": "smiths",
       "id": 1
+    }
+  ],
+  "participation": [
+    {
+      "id": 1,
+      "userId": 5,
+      "eventId": 1
     }
   ]
 }

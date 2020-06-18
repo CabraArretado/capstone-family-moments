@@ -39,7 +39,7 @@ const JoinEvent = (props) => {
 
     // Search for event code
     const checkEventCode = async () => {
-        const eventQuery = await API.getWhere("events", "eventcode", eventCode)
+        const eventQuery = await API.getWhereExpand("events", "eventcode", eventCode, "user")
         console.log(eventQuery)
             if (eventQuery.length === 0){
                 setIsEventLoaded(false)
@@ -77,12 +77,12 @@ const JoinEvent = (props) => {
             isEventLoaded && <div>
                 <div>
                     <h4>{event.name}</h4>
-                    <h6>by: {}</h6>
+                    <h6>by: {event.user.username}</h6>
                     <h5>{event.date} at {event.time}</h5>
                     <h5>Address: <span>{event.address}</span> </h5>
                     <h5> {event.description} </h5>
                 </div>
-                <Link to="/JoinEventRegister"><button>Join!</button></Link>
+                <Link to="/tests"><button>Join!</button></Link>
             </div>
             }
         </Jumbotron>

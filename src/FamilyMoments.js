@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import ApplicationViews from './components/ApplicationViews';
 import API from './module/dataManager'
 import { setStorageSession } from './Helpers'
+import "./App.css"
 
 function FamilyMoments(props) {
 

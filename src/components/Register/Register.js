@@ -15,7 +15,7 @@ import { Comeback, inUse, generalHandleChanges } from "../../Helpers"
 
 const Register = (props) => {
 
-    const [credentials, setCredentials] = useState({ username: "" , email: "", password: "" });
+    const [credentials, setCredentials] = useState({ firstname: "", lastname: "" , email: "", password: "" });
     const [confirmation, setConfirmation] = useState(null);
 
     // Handle changes in the username, email, password
@@ -36,7 +36,7 @@ const Register = (props) => {
         if (await inUse("users", credentials, "email")) {
             alert("Email already cadastred!")
         }
-        else if (!credentials.username || !credentials.password || !credentials.email) {
+        else if (!credentials.firstname || !credentials.password || !credentials.email || !credentials.lastname) {
             alert("Please, provide all the information in order to create a account")
         }
         else if (credentials.password !== confirmation) {
@@ -62,8 +62,10 @@ const Register = (props) => {
             <hr />
             <Form onSubmit={handleRegister}>
                 <FormGroup>
-                    <Label for="username">Username</Label>
-                    <Input onChange={handleChange} type="text" name="username" id="username" placeholder="Username" />
+                    <Label for="firstname">First Name</Label>
+                    <Input onChange={handleChange} type="text" name="firstname" id="firstname" placeholder="First Name" />
+                    <Label for="lastname">Last Name</Label>
+                    <Input onChange={handleChange} type="text" name="lastname" id="lastname" placeholder="lastname" />
                 </FormGroup>
                 <FormGroup>
                     <Label for="email">Email</Label>
