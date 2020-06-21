@@ -1,18 +1,18 @@
 import React, {useState, useEffect}from 'react';
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import {
     Jumbotron,
     Button,
     Form,
     FormGroup,
-    Label,
     Input
 } from 'reactstrap';
 
 // moods
 import API from "../../module/dataManager.js"
 import { 
-    Comeback
+    Comeback,
+    setStorageEventId
 }
 from "../../Helpers"
 
@@ -30,7 +30,7 @@ const JoinEvent = (props) => {
         eventcode: "" 
     })
 
-    // Handle changes in the username, email, password
+    // Handle changes in eventcode
     const handleChange = (e) => {
         let stateToChange = eventCode
         stateToChange = e.target.value
@@ -58,8 +58,13 @@ const JoinEvent = (props) => {
         setIsLoading(false)
     }
 
-    // Listener to the event moodification
-    // useEffect(() => {await checkEventCode()}, [])
+    // Handle JOIN
+    const handleLogin = (e) => {
+        e.preventDefault();
+
+        // Temp Event (Hold the event id to the next page)
+        sessionStorage.setItem("tempEventId", event.id)
+    }
 
     return <>
         <Comeback />
@@ -82,7 +87,7 @@ const JoinEvent = (props) => {
                     <h5>Address: <span>{event.address}</span> </h5>
                     <h5> {event.description} </h5>
                 </div>
-                <Link to="/tests"><button>Join!</button></Link>
+                <Button onClick={handleLogin}>Join!</Button>
             </div>
             }
         </Jumbotron>

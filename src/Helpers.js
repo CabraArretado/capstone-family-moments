@@ -31,7 +31,6 @@ export const inUse = async (list, obj, chave) => {
 export const generalHandleChanges = (event, array, setArray) => {
   let stateToChange = {...array};
   stateToChange[event.target.id] = event.target.value
-  console.log("stateToChange: ", stateToChange)
   setArray(stateToChange)
 }
 
@@ -46,11 +45,10 @@ export const setStorageSession = (user) => {
   return true
 }
 
-// SET EVENT
-export const setStorageEvent = (event) => {
+// SET EVENT ID
+export const setStorageEventId = (event) => {
   sessionStorage.setItem("eventId", event.id)
 }
-
 
 // GET USER ID
 export const getSessionUserId = () => {

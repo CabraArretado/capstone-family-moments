@@ -13,10 +13,10 @@ import RegisterParticipation from "./JoinEvent/RegisterParticipation.js"
 // import Welcome from "./Welcome/Welcome"
 
 const ApplicationViews = (props) => {
-    // User
+    const hasUser = props.hasUser;
     const setUser = props.setUser;
-    const setUserLogin = props.setUserLogin;
-
+    const setEventId = props.setEventId;
+    const hasEvent = props.hasEvent;
 
 
     return (
@@ -25,16 +25,23 @@ const ApplicationViews = (props) => {
                 exact
                 path="/"
                 render={props => {
-                    return <Welcome {...props} />;
+                    if (!!hasUser) {
+                        return <Redirect to="/home" />
+                    } else {
+                        return <Welcome {...props} />;
+                    }
                 }}
             />
-
 
             <Route
                 exact
                 path="/register"
                 render={props => {
-                    return <Register setUser={setUser} {...props} />;
+                    if (!!hasUser) {
+                        return <Redirect to="/home" />
+                    } else {
+                        return <Register setUser={setUser} {...props} />;
+                    }
                 }}
             />
 
@@ -42,7 +49,38 @@ const ApplicationViews = (props) => {
                 exact
                 path="/login"
                 render={props => {
-                    return <Login setUserLogin={setUserLogin} {...props} />;
+                    if (!!hasUser) {
+                        return <Redirect to="/home" />
+                    } else {
+                        return <Login setUserLogin={setUser} {...props} />;
+                    }
+                }}
+            />
+
+            <Route
+                exact
+                path="/home"
+                render={props => {
+                    // no user
+                    if (!hasUser) {
+                        return <Redirect to="/welcome" />;
+                    }
+                    // No event
+                    if (!hasEvent) {
+                        return <HomeClean {...props} />
+                    }
+                    // user and event
+                    if (hasUser && hasEvent) {
+                        //TODO
+                    }
+                }}
+            />
+
+            <Route
+                exact
+                path="/searchevent"
+                render={props => {
+                    return <JoinEvent setEventId={setEventId}{...props} />;
                 }}
             />
 
@@ -50,11 +88,11 @@ const ApplicationViews = (props) => {
                 exact
                 path="/registerevent"
                 render={props => {
-                    return <RegisterEvent {...props} />;
+                    return <RegisterEvent setEventId={setEventId}{...props} />;
                 }}
             />
 
-{/* TESTE PAGE */}
+            {/* TESTE PAGE */}
             <Route
                 exact
                 path="/tests"

@@ -11,17 +11,14 @@ import {
 
 // moods
 import API from "../../module/dataManager.js"
-import { Comeback } from "../../Helpers"
+import { Comeback, generalHandleChanges } from "../../Helpers"
 
 const Login = (props) => {
 
     const [credentials, setCredentials] = useState({email: "", password: ""});
 
     const handleChange = (e) => {
-        let stateToChange = { ...credentials };
-        stateToChange[e.target.id] = e.target.value;
-        console.log(stateToChange)
-        setCredentials(stateToChange)
+        generalHandleChanges(e, credentials, setCredentials)
     }
 
     const handleLogin = async (e) => {
@@ -30,12 +27,10 @@ const Login = (props) => {
 
         // Checks if e-mail exist and 
         if (tempo.length === 1 && credentials.password === tempo[0].password) {
-            console.log(tempo[0])
             props.setUserLogin(tempo[0])
-            props.history.push("/");
+            props.history.push("/home")
         } else {
             alert("Email or password wrong!")
-            return <Redirect to="/login" />
         }
     }
 

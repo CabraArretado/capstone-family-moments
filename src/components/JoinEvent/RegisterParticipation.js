@@ -20,9 +20,11 @@ import {
 
 
 const RegisterParticipation = (props) => {
-    const session = getStorageSession()
     const [isLoading, setIsLoading] = useState(false)
-    const [informacao, setInformacao] = useState({userId: session.userId, address: "", phone: "", message: ""});
+    
+    const session = getStorageSession()
+    const tempEventId = parseInt(sessionStorage.getItem("tempEventId"))
+    const [informacao, setInformacao] = useState({userId: parseInt(session.userId) ,eventId: tempEventId, address: "", phone: "", message: ""});
 
     // Handle changes
     const handleChange = (e) => {
@@ -33,13 +35,20 @@ const RegisterParticipation = (props) => {
     const handlerParticipation = (e) => {
         e.preventDefault();
         setIsLoading(true);
-        if (!informacao.address || !informacao.phone || !informacao.message){
-            alert("Please provide all required information before confirm.")
+        if (!informacao.address || !informacao.phone){
+            alert("Please provide all required information before confirm. (Address and phone)")
         } else {
             API.post("participations", informacao)
+            setIsLoading(false)
+            props.history.push("/home")
         }
-
-    }    
+    }
+    
+    const userParticipationState = async () => {
+        let user = await API.getWhere("users", informacao.userId)
+        user.eventId = tempEventId
+        user.participation = 
+    }
 
     return <>
         <Comeback />
@@ -50,11 +59,11 @@ const RegisterParticipation = (props) => {
             <Form onSubmit={handlerParticipation} className="container">
                 <FormGroup className="form-row">
                     <Label for="name" className="col-5">First Name:</Label>
-                    <input type="text" name="name" id="name" placeholder="name" readOnly className="col form-control-plaintext" value={session.firstname}/>
+                    <input type="text" name="name" id="name" readOnly className="col form-control-plaintext" value={session.firstname}/>
                 </FormGroup>
                 <FormGroup className="form-row">
-                    <Label className="col-5 p-0" for="name">Last Name:</Label>
-                    <input type="text" name="name" id="name" placeholder="name" readOnly className="col form-control-plaintext" value={session.lastname}/>
+                    <Label className="col-5" for="name">Last Name:</Label>
+                    <input type="text" name="name" id="name" readOnly className="col form-control-plaintext" value={session.lastname}/>
                 </FormGroup>
                 <FormGroup>
                     <Label for="address">Address</Label>

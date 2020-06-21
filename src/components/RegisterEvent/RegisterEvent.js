@@ -14,8 +14,7 @@ import API from "../../module/dataManager.js"
 import { 
     Comeback, 
     inUse, 
-    generalHandleChanges, 
-    setStorageEvent, 
+    generalHandleChanges,
     getSessionUserId
 } from "../../Helpers"
 
@@ -28,7 +27,7 @@ const RegisterEvent = (props) => {
         date: "", 
         time: "", 
         description: "", 
-        eventcode: "" 
+        eventcode: "" ,
     });
 
     // Handle changes
@@ -49,9 +48,9 @@ const RegisterEvent = (props) => {
             Redirect("/Login")
         } else {
             let data = await API.post("events", informacao)
-            setStorageEvent(data)
+            props.setEventId(data)
             setIsLoading(false)
-            props.history.push("/")
+            props.history.push("/home")
         }
     }
 

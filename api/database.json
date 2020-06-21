@@ -24,6 +24,13 @@
       "email": "felipe@usa",
       "password": "a",
       "id": 8
+    },
+    {
+      "firstname": "Felipe",
+      "lastname": "Smith",
+      "email": "felipe@usb",
+      "password": "a",
+      "id": 9
     }
   ],
   "messages": [],

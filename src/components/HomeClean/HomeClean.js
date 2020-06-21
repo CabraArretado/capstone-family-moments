@@ -14,14 +14,14 @@ const HomeClean = (props) => {
                         <p className="lead">
                             If you wanna create a new ghatering for your family click in the button bellow!
                         </p>
-                        <Link to="TODO"><Button color="dark">Create a gathering!</Button></Link>
+                        <Link to="/registerevent"><Button color="dark">Create a gathering!</Button></Link>
                     </div>
                     <hr className="my-2" />
                     <div className="">
                         <p className="lead">
                             If you wanna join in an existent gathering click in the buton bellow!
                         </p>
-                        <Link to="TODO"><Button color="dark">Join in a gathering!</Button></Link>
+                        <Link to="/searchevent"><Button color="dark">Join in a gathering!</Button></Link>
                     </div>
                 </div>
             </Jumbotron>
