@@ -8,7 +8,6 @@ import Login from "./Login/Login"
 import HomeClean from "./HomeClean/HomeClean"
 import RegisterEvent from "./RegisterEvent/RegisterEvent"
 import JoinEvent from "./JoinEvent/JoinEvent"
-import RegisterParticipation from "./JoinEvent/RegisterParticipation.js"
 // import Welcome from "./Welcome/Welcome"
 // import Welcome from "./Welcome/Welcome"
 
@@ -97,7 +96,7 @@ const ApplicationViews = (props) => {
                 exact
                 path="/tests"
                 render={props => {
-                    return <RegisterParticipation {...props} />;
+                    return <JoinEvent {...props} />;
                 }}
             />
         </>

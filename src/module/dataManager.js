@@ -58,14 +58,16 @@ export default {
     },
 
     // PUT curent data
-    put(list, id, newObj) {
-        return fetch(`${remoteURL}${list}/${id}`, {
+    async put(list, id, newObj) {
+        let i = await fetch(`${remoteURL}${list}/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(newObj)
-        }).then(data => data.json())
+        })
+        i = i.json();
+        return i
     },
 
     // RANDOM ID provider
