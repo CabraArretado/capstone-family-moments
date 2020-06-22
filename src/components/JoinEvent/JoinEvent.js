@@ -9,71 +9,61 @@ import {
 } from 'reactstrap';
 
 // moods
-import API from "../../module/dataManager.js"
+import API from "../../module/dataManager.js";
 import {
     Comeback,
     getSessionUserId
-}
-    from "../../Helpers"
+} from "../../Helpers";
 
 const JoinEvent = (props) => {
-    const [isLoading, setIsLoading] = useState(false)
-    const [nothingFound, setNothingFound] = useState(false);
+    // Variables
+    const [isLoading, setIsLoading] = useState(false); // Button is loading
+    const [nothingFound, setNothingFound] = useState(false); // trigger to the Nothing Found info
 
-    const [isEventLoaded, setIsEventLoaded] = useState(false);
-    const [eventCode, setEventCode] = useState("");
-    const [event, setEvent] = useState({
-        // eventId: null,
-        // name: "",
-        // userId: null,
-        // user: {},
-        // address: "",
-        // date: "",
-        // time: "",
-        // description: "",
-        // eventcode: ""
-    })
+    const [isEventLoaded, setIsEventLoaded] = useState(false); // Check if the event is loaded on data
+    const [eventCode, setEventCode] = useState(""); // Event code
+    const [event, setEvent] = useState({}); // event itself
 
     // Handle changes in eventcode
     const handleChange = (e) => {
-        let stateToChange = eventCode
-        stateToChange = e.target.value
-        setEventCode(stateToChange)
+        let stateToChange = eventCode;
+        stateToChange = e.target.value;
+        setEventCode(stateToChange);
     }
 
     // Search for event code
     const checkEventCode = async () => {
-        let eventQuery = await API.getWhereExpand("events", "eventcode", eventCode, "user")
-        eventQuery = eventQuery[0]
-        console.log("eventQuery: ", eventQuery)
-
-        if (!eventQuery) {
-            setIsEventLoaded(false)
-            setNothingFound(true)
+        const eventQuery = await API.getWhereExpand("events", "eventcode", eventCode, "user");
+        if (eventQuery.length === 0) {
+            setIsEventLoaded(false);
+            setNothingFound(true);
         }
-        else{
-            setEvent(eventQuery)
-            setIsEventLoaded(true)
-            setNothingFound(false)
-            console.log("event: ", event)
+        else if (eventQuery.length === 1) {
+            setEvent(eventQuery[0]);
+            setIsEventLoaded(true);
+            setNothingFound(false);
         }
     }
-
+    
     // Handle the submit of event code search
     const checkOnClick = async (e) => {
         e.preventDefault();
-        setIsLoading(true)
+        setIsLoading(true);
         await checkEventCode();
-        setIsLoading(false)
+        setIsLoading(false);
     }
 
+    // Request the user data from server, add eventId and participationStatus as keys, and send back
     const handleJoin = async (e) => {
         e.preventDefault();
-        let requester = await API.get("users", getSessionUserId())
-        console.log(requester)
+
+        let requester = await API.get("users", getSessionUserId());
+
+        
         requester.eventId = event.id;
         requester.participationStatus = 3;
-        await API.put("users", requester)
+
+        await API.put("users", requester.id, requester);
     }
 
 
@@ -100,7 +90,7 @@ const JoinEvent = (props) => {
                         <h5>Address: <span>{event.address}</span> </h5>
                         <h5> {event.description} </h5>
                     </div>
-                    <Button onClick={handleJoin}>Join!</Button>
+                    <Button onClick={handleJoin}>Request Participation!</Button>
                 </div>
             }
 
@@ -110,12 +100,6 @@ const JoinEvent = (props) => {
                     <p>If the problem persist please contact the adminsitrador of the event</p>
                 </div>
             }
-            {/* 
-            {
-            !eventCode && !isEventLoaded && <div>
-                <h4>Please, provide the Event Code provided by the administrator</h4>
-            </div>
-            } */}
         </Jumbotron>
     </>
 };

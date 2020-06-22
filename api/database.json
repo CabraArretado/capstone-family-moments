@@ -23,7 +23,9 @@
       "lastname": "Smith",
       "email": "felipe@usa",
       "password": "a",
-      "id": 8
+      "id": 8,
+      "eventId": 1,
+      "participationStatus": 3
     },
     {
       "firstname": "Felipe",

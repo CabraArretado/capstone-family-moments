@@ -59,7 +59,7 @@ export default {
 
     // PUT curent data
     async put(list, id, newObj) {
-        let i = await fetch(`${remoteURL}${list}/${id}`, {
+        let i = await fetch(`${remoteURL}/${list}/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
