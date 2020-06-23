@@ -5,20 +5,22 @@
       "lastname": "Smith",
       "email": "felipe@usa",
       "password": "a",
-      "eventId": 2,
+      "eventId": 1,
       "participationStatus": 1,
       "id": 1
-    },
-    {
-      "firstname": "aa",
-      "lastname": "aa",
-      "email": "a@a",
-      "password": "a",
-      "eventId": null,
-      "participationStatus": 0,
-      "id": 2
     }
   ],
   "messages": [],
-  "events": []
+  "events": [
+    {
+      "name": "a",
+      "userId": 1,
+      "address": "l",
+      "date": "2020-06-03",
+      "time": "14:00",
+      "description": "ll",
+      "eventcode": "qqqqqq",
+      "id": 1
+    }
+  ]
 }

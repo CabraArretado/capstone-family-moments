@@ -26,6 +26,7 @@ const WaitingAprovation = () => {
         address: "",
         description: ""
     })
+    // hey
 
     let callBacks = async () => {
         let i = await API.getWhereExpand("events", "id", getSessionEventId(), "user")
