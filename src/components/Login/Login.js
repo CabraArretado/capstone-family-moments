@@ -27,7 +27,7 @@ const Login = (props) => {
 
         // Checks if e-mail exist and 
         if (tempo.length === 1 && credentials.password === tempo[0].password) {
-            props.setUserLogin(tempo[0])
+            props.setUser(tempo[0])
             props.history.push("/home")
         } else {
             alert("Email or password wrong!")

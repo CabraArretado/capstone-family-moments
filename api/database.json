@@ -1,65 +1,24 @@
 {
   "users": [
     {
-      "username": "felipe",
-      "email": "felipe@us",
-      "password": "2",
-      "id": 5
-    },
-    {
-      "username": "111",
-      "email": "fm@a",
-      "password": "1",
-      "id": 6
-    },
-    {
-      "username": "aaa",
-      "email": "fm@aa",
-      "password": "a",
-      "id": 7
-    },
-    {
       "firstname": "Felipe",
       "lastname": "Smith",
       "email": "felipe@usa",
       "password": "a",
-      "id": 8,
-      "eventId": 1,
-      "participationStatus": 3
+      "eventId": 2,
+      "participationStatus": 1,
+      "id": 1
     },
     {
-      "firstname": "Felipe",
-      "lastname": "Smith",
-      "email": "felipe@usb",
+      "firstname": "aa",
+      "lastname": "aa",
+      "email": "a@a",
       "password": "a",
-      "id": 9
+      "eventId": null,
+      "participationStatus": 0,
+      "id": 2
     }
   ],
   "messages": [],
-  "events": [
-    {
-      "name": "Felipe Bday",
-      "userId": 5,
-      "address": "Felipe's",
-      "date": "2020-06-18",
-      "time": "03:53",
-      "description": "Felipe's bday",
-      "eventcode": "smiths",
-      "id": 1
-    }
-  ],
-  "participations": [
-    {
-      "id": 1,
-      "userId": 5,
-      "eventId": 1
-    },
-    {
-      "userId": 8,
-      "address": "das",
-      "phone": "dasdas",
-      "message": "dasd",
-      "id": 2
-    }
-  ]
+  "events": []
 }

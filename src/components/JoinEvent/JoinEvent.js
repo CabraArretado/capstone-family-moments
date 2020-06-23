@@ -12,7 +12,7 @@ import {
 import API from "../../module/dataManager.js";
 import {
     Comeback,
-    getSessionUserId
+    changeParticipationStatus
 } from "../../Helpers";
 
 const JoinEvent = (props) => {
@@ -56,18 +56,8 @@ const JoinEvent = (props) => {
     // Request the user data from server, add eventId and participationStatus as keys, and send back
     const handleJoin = async (e) => {
         e.preventDefault();
-
-        let requester = await API.get("users", getSessionUserId());
-
-        
-        requester.eventId = event.id;
-        requester.participationStatus = 3;
-
-        await API.put("users", requester.id, requester);
+        changeParticipationStatus(event.id, 3)
     }
-
-
-
 
     return <>
         <Comeback />
