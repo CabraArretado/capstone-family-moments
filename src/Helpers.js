@@ -31,7 +31,6 @@ export const inUse = async (list, obj, chave) => {
 export const generalHandleChanges = (event, array, setArray) => {
   let stateToChange = {...array};
   stateToChange[event.target.id] = event.target.value
-  console.log("stateToChange: ", stateToChange)
   setArray(stateToChange)
 }
 
@@ -43,24 +42,25 @@ export const setStorageSession = (user) => {
   sessionStorage.setItem("firstname",user.firstname)
   sessionStorage.setItem("lastname",user.lastname)
   sessionStorage.setItem("email",user.email)
-  return true
+  sessionStorage.setItem("eventId",user.eventId)
+  sessionStorage.setItem("participationStatus",user.participationStatus)
 }
 
-// SET EVENT
-export const setStorageEvent = (event) => {
+// SET EVENT ID
+export const setStorageEventId = (event) => {
   sessionStorage.setItem("eventId", event.id)
 }
-
 
 // GET USER ID
 export const getSessionUserId = () => {
   return parseInt(sessionStorage.getItem("userId"))
 }
 
-  // GET EVENT ID
+// GET EVENT ID
 export const getSessionEventId = () => {
   return parseInt(sessionStorage.getItem("eventId"))
 }
+
 
 export const getStorageSession  = () => {
   return {
@@ -68,6 +68,8 @@ export const getStorageSession  = () => {
     firstname: sessionStorage.getItem("firstname"),
     lastname: sessionStorage.getItem("lastname"),
     email: sessionStorage.getItem("email"),
+    eventId: parseInt(sessionStorage.getItem("eventId")),
+    participationStatus: parseInt(sessionStorage.getItem("participationStatus"))
   }
 }
 
@@ -75,8 +77,11 @@ export const getStorageSession  = () => {
  /* ----------------------------------------- END Session storage functions */
 
 
-// Transform date in a Date obj
-export const passDate = (date) => {
-  date = new Date(date)
-  return date
+/* ----------------------------------------- Start Login functions */
+export const changeParticipationStatus = async (eventId, status) => {
+let requester = await API.get("users", getSessionUserId());
+requester.eventId = eventId;
+requester.participationStatus = status;
+await API.put("users", requester.id, requester);
+setStorageSession(requester)
 }

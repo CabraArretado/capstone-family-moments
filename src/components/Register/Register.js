@@ -11,11 +11,17 @@ import {
 
 // moods
 import API from "../../module/dataManager.js"
-import { Comeback, inUse, generalHandleChanges } from "../../Helpers"
+import {
+    Comeback,
+    inUse, 
+    generalHandleChanges,
+    setStorageSession
+ } from "../../Helpers"
 
 const Register = (props) => {
 
-    const [credentials, setCredentials] = useState({ firstname: "", lastname: "" , email: "", password: "" });
+    // Variables
+    const [credentials, setCredentials] = useState({ firstname: "", lastname: "" , email: "", password: "", eventId: null, participationStatus: 0 });
     const [confirmation, setConfirmation] = useState(null);
 
     // Handle changes in the username, email, password
@@ -28,6 +34,11 @@ const Register = (props) => {
         let stateToChange = confirmation;
         stateToChange = e.target.value;
         setConfirmation(stateToChange)
+    }
+
+    // Register the use in the DB
+    const createUser = (obj) => {
+            return API.post("users", obj)
     }
 
     // Register the user and log him in
@@ -49,10 +60,6 @@ const Register = (props) => {
         }
     }
 
-    // Register the use in the DB
-    const createUser = (obj) => {
-            return API.post("users", obj)
-    }
 
     return <>
         <Comeback />

@@ -14,9 +14,10 @@ import API from "../../module/dataManager.js"
 import { 
     Comeback, 
     inUse, 
-    generalHandleChanges, 
-    setStorageEvent, 
-    getSessionUserId
+    generalHandleChanges,
+    getSessionUserId,
+    setStorageEventId,
+    changeParticipationStatus
 } from "../../Helpers"
 
 const RegisterEvent = (props) => {
@@ -28,7 +29,7 @@ const RegisterEvent = (props) => {
         date: "", 
         time: "", 
         description: "", 
-        eventcode: "" 
+        eventcode: "" ,
     });
 
     // Handle changes
@@ -45,13 +46,13 @@ const RegisterEvent = (props) => {
         } else if ( await inUse("events", informacao, "eventcode")){
             alert("EVENT CODE already in use. Please choose other!")
             setIsLoading(false)
-        }else if (informacao.userId !== 0) {    
-            Redirect("/Login")
         } else {
+            console.log()
             let data = await API.post("events", informacao)
-            setStorageEvent(data)
+            setStorageEventId(data)
+            changeParticipationStatus(data.id, 1)
             setIsLoading(false)
-            props.history.push("/")
+            props.history.push("/home")
         }
     }
 
