@@ -8,6 +8,15 @@
       "eventId": 1,
       "participationStatus": 1,
       "id": 1
+    },
+    {
+      "firstname": "qqq",
+      "lastname": "qqq",
+      "email": "qqq@qqq",
+      "password": "q",
+      "eventId": null,
+      "participationStatus": 0,
+      "id": 2
     }
   ],
   "messages": [],
