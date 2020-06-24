@@ -47,10 +47,9 @@ const RegisterEvent = (props) => {
             alert("EVENT CODE already in use. Please choose other!")
             setIsLoading(false)
         } else {
-            console.log()
             let data = await API.post("events", informacao)
             setStorageEventId(data)
-            changeParticipationStatus(data.id, 1)
+            props.changeParticipationStatus(data.id, 1)
             setIsLoading(false)
             props.history.push("/home")
         }

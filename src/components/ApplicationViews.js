@@ -9,7 +9,7 @@ import HomeClean from "./HomeClean/HomeClean"
 import RegisterEvent from "./RegisterEvent/RegisterEvent"
 import JoinEvent from "./JoinEvent/JoinEvent"
 import WaitingAprovation from "./JoinEvent/WaitingAprovation"
-// import Welcome from "./Welcome/Welcome"
+import Info from "./Info/Info"
 
 import {getStorageSession} from "../Helpers"
 
@@ -19,8 +19,8 @@ const ApplicationViews = (props) => {
     const setEventId = props.setEventId;
     const session = props.session;
     const setSession = props.setSession
+    const changeParticipationStatus = props.changeParticipationStatus
     
-// const [participationStatus, setParticipationStatus] = useState(session.participationStatus)
 
     return (
         <>
@@ -68,10 +68,7 @@ const ApplicationViews = (props) => {
                 exact
                 path="/home"
                 render={props => {
-                    console.log("1 - ", !hasUser)
-                    console.log("2 - ", parseInt(session.participationStatus))
-                    console.log("3 - ", session.participationStatus === 3)
-                    console.log(session)
+
                     // no user
                     if (!hasUser) {
                         return <Redirect to="/welcome" />;
@@ -80,7 +77,18 @@ const ApplicationViews = (props) => {
                     else if (session.participationStatus === 0) {
                         return <HomeClean {...props} />
                     }
-                    // user and event
+
+                    // Event owner
+                    else if (session.participationStatus === 1) {
+                        return <Info {...props} />
+                    }
+                    
+                    // 
+                    else if (session.participationStatus === 2) {
+                        return <Info {...props} />
+                    }
+
+                    // Waiting Approvation
                     else if (session.participationStatus === 3) {
                         return <WaitingAprovation {...props} />
                     }
@@ -99,7 +107,7 @@ const ApplicationViews = (props) => {
                 exact
                 path="/registerevent"
                 render={props => {
-                    return <RegisterEvent setEventId={setEventId}{...props} />;
+                    return <RegisterEvent changeParticipationStatus={changeParticipationStatus} setUser={setUser} {...props} />;
                 }}
             />
 

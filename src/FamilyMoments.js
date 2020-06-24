@@ -8,7 +8,8 @@ import API from './module/dataManager'
 import {
   setStorageSession,
   setStorageEventId,
-  getStorageSession
+  getStorageSession,
+  getSessionUserId
 } from './Helpers'
 import "./App.css"
 
@@ -21,25 +22,29 @@ function FamilyMoments(props) {
   const [hasUser, setHasUser] = useState(isAuthenticated())
   const [session, setSession] = useState(getStorageSession())
 
-  // Get the user ID by the email and set credentials including user ID
-  const setEventId = (event) => {
-    setStorageEventId(event)
-  }
 
   // Set the user ID in the register
   const setUser = (user) => {
+    setSession(user)
     setStorageSession(user)
     setHasUser(isAuthenticated());
   }
 
-  // let session = getStorageSession()
-  // const [participationStatus, setParticipationStatus] = useState(session.participationStatus)
+  const changeParticipationStatus = async (eventId, status) => {
+    let requester = await API.get("users", getSessionUserId());
+    requester.eventId = eventId;
+    requester.participationStatus = status;
+    requester = await API.put("users", requester.id, requester);
+    setUser(requester)
+    }
+
+
 
   /*                end LOGIN FEATURES                           */
 
 return  <>
   <Link to="/tests"><button>TESTS</button></Link> {/* TEST BUTTON USED TO DEVELOPMENT*/}
-  <ApplicationViews setUser={setUser} hasUser={hasUser} session={session} setSession={setSession}  /> {/*setEventId={setEventId} hasEvent={hasEvent}*/}
+  <ApplicationViews setUser={setUser} hasUser={hasUser} session={session} setSession={setSession} changeParticipationStatus={changeParticipationStatus} /> 
   </>
 }
 export default FamilyMoments;
