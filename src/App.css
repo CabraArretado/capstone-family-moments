@@ -39,3 +39,7 @@
   width: 800px;
   height: auto;
 }
+
+.newbox--newsfeed {
+  border: 1px solid black;
+}

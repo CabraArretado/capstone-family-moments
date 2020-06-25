@@ -34,7 +34,7 @@ export const generalHandleChanges = (event, array, setArray) => {
   setArray(stateToChange)
 }
 
- /* ----------------------------------------- Session storage functions */
+ /* Session storage functions */
 
 //  SET USER
 export const setStorageSession = (user) => {
@@ -61,7 +61,6 @@ export const getSessionEventId = () => {
   return parseInt(sessionStorage.getItem("eventId"))
 }
 
-
 export const getStorageSession  = () => {
   return {
     userId: parseInt(sessionStorage.getItem("userId")),
@@ -73,11 +72,10 @@ export const getStorageSession  = () => {
   }
 }
 
+ /* ----------------------------------------- */
 
- /* ----------------------------------------- END Session storage functions */
 
-
-/* ----------------------------------------- Start Login functions */
+/* Start Login functions */
 export const changeParticipationStatus = async (eventId, status) => {
 let requester = await API.get("users", getSessionUserId());
 requester.eventId = eventId;
@@ -85,3 +83,5 @@ requester.participationStatus = status;
 await API.put("users", requester.id, requester);
 setStorageSession(requester)
 }
+
+ /* ----------------------------------------- */

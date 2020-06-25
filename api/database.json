@@ -1,114 +1,73 @@
 {
   "users": [
     {
-      "firstname": "Felipe",
+      "firstname": "Amanda",
       "lastname": "Smith",
-      "email": "felipe@a",
+      "email": "amanda@amanda",
       "password": "a",
-      "eventId": 1,
-      "participationStatus": 1,
-      "id": 1
-    },
-    {
-      "id": 2
-    },
-    {
-      "firstname": "Felipe",
-      "lastname": "Smith",
-      "email": "b@b",
-      "password": "b",
       "eventId": 2,
       "participationStatus": 1,
-      "id": 3
-    },
-    {
-      "firstname": "John",
-      "lastname": "Smith",
-      "email": "felipe@usa",
-      "password": "a",
-      "eventId": 3,
-      "participationStatus": 1,
-      "id": 4
-    },
-    {
-      "firstname": "a",
-      "lastname": "a",
-      "email": "a@a",
-      "password": "a",
-      "eventId": 4,
-      "participationStatus": 1,
-      "id": 5
-    },
-    {
-      "firstname": "hh",
-      "lastname": "hh",
-      "email": "hhh@hhh",
-      "password": "h",
-      "eventId": 5,
-      "participationStatus": 1,
-      "id": 6
-    },
-    {
-      "firstname": "s",
-      "lastname": "s",
-      "email": "s@s",
-      "password": "s",
-      "eventId": null,
-      "participationStatus": 0,
-      "id": 7
+      "id": 1
     }
   ],
   "messages": [],
   "events": [
     {
-      "name": "a",
-      "userId": 1,
-      "address": "a",
-      "date": "2020-06-23",
-      "time": "16:28",
-      "description": "a",
-      "eventcode": "aaaaaa",
+      "name": "Amanda's Birthday",
+      "userId": 0,
+      "address": "900 Fictional St.",
+      "date": "2020-08-19",
+      "time": "14:17",
+      "description": "We are celebrating my 50th birthday! I expect you all here!",
+      "eventcode": "AMANDA",
       "id": 1
     },
     {
-      "name": "Felipe",
-      "userId": 3,
-      "address": "aaa",
-      "date": "2020-06-14",
-      "time": "16:38",
-      "description": "k",
-      "eventcode": "qqqqqq",
+      "name": "Felipe Bday",
+      "userId": 1,
+      "address": "l",
+      "date": "2020-06-10",
+      "time": "12:29",
+      "description": "kk",
+      "eventcode": "aaaaaa",
+      "id": 2
+    }
+  ],
+  "news": [
+    {
+      "title": "The party is gonna start!",
+      "eventId": 1,
+      "content": "Look at this amazing image",
+      "hasPicture": true,
+      "pictureUrl": "https://res.cloudinary.com/dqhswasf6/image/upload/v1593101959/testes/pzbgzxxhw1laynsohheo.png",
+      "id": 1
+    },
+    {
+      "title": "Hello, world!",
+      "eventId": 2,
+      "userId": 1,
+      "content": "Look at this amazing image",
+      "hasPicture": false,
+      "pictureUrl": "",
       "id": 2
     },
     {
-      "name": "a",
-      "userId": 4,
-      "address": "a",
-      "date": "2020-06-24",
-      "time": "16:41",
-      "description": "a",
-      "eventcode": "smit8",
+      "title": "Hello, world!",
+      "eventId": 2,
+      "userId": 1,
+      "content": "Look at this amazing image",
+      "hasPicture": true,
+      "pictureUrl": "https://res.cloudinary.com/dqhswasf6/image/upload/v1593103130/testes/hrte5ocl6glwq1wydd1g.png",
       "id": 3
     },
     {
-      "name": "a",
-      "userId": 5,
-      "address": "a",
-      "date": "2020-06-19",
-      "time": "16:42",
-      "description": "a",
-      "eventcode": "aaaaa2",
+      "title": "Teste",
+      "eventId": 2,
+      "userId": 1,
+      "content": "Mais um teste",
+      "hasPicture": false,
+      "pictureUrl": "",
       "id": 4
-    },
-    {
-      "name": "a",
-      "userId": 6,
-      "address": "a",
-      "date": "2020-06-19",
-      "time": "16:44",
-      "description": "a",
-      "eventcode": "kkkkkk",
-      "id": 5
     }
   ]
 }

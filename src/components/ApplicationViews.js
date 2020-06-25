@@ -9,6 +9,7 @@ import HomeClean from "./HomeClean/HomeClean"
 import RegisterEvent from "./RegisterEvent/RegisterEvent"
 import JoinEvent from "./JoinEvent/JoinEvent"
 import WaitingAprovation from "./JoinEvent/WaitingAprovation"
+import NewsFeed from "./NewsFeed/NewsFeed"
 import Info from "./Info/Info"
 
 import {getStorageSession} from "../Helpers"
@@ -84,9 +85,9 @@ const ApplicationViews = (props) => {
                     }
                     
                     // 
-                    else if (session.participationStatus === 2) {
-                        return <Info {...props} />
-                    }
+                    // else if (session.participationStatus === 2) {
+                    //     return <Info {...props} />
+                    // }
 
                     // Waiting Approvation
                     else if (session.participationStatus === 3) {
@@ -116,7 +117,7 @@ const ApplicationViews = (props) => {
                 exact
                 path="/tests"
                 render={props => {
-                    return <WaitingAprovation {...props} />;
+                    return <NewsFeed {...props} />;
                 }}
             />
         </>
