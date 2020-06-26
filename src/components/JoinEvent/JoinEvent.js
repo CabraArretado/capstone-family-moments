@@ -11,8 +11,7 @@ import {
 // moods
 import API from "../../module/dataManager.js";
 import {
-    Comeback,
-    changeParticipationStatus
+    Comeback
 } from "../../Helpers";
 
 const JoinEvent = (props) => {
@@ -56,7 +55,8 @@ const JoinEvent = (props) => {
     // Request the user data from server, add eventId and participationStatus as keys, and send back
     const handleJoin = async (e) => {
         e.preventDefault();
-        changeParticipationStatus(event.id, 3)
+        props.changeParticipationStatus(event.id, 3)
+        props.history.push("/home")
     }
 
     return <>

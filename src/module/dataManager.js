@@ -94,6 +94,12 @@ export default {
         return data
     },
 
+    async getWhereAnd(list, key, value, key2, value2) {
+        let data = await fetch(`${remoteURL}/${list}?${key}=${value}&${key2}=${value2}`)
+        data = data.json()
+        return data
+    },
+
     //
     async getWhereExpand(list, key, value, otherId) {
         let data = await fetch(`${remoteURL}/${list}?${key}=${value}&_expand=${otherId}`)

@@ -43,13 +43,12 @@ const NewsFeed = () => {
     // Getting ALL news from the API
     const getData = async () => {
         let dataNews = await API.getWhereExpand("news", "eventId", session.eventId, "event")
-        console.log("getdata = ", dataNews)
         setNews(dataNews)
     }
 
     useEffect(() => {
         getData()
-    }, [])
+    }, [formNewOn])
 
     /*------------------------------------*/
 
@@ -96,7 +95,7 @@ const NewsFeed = () => {
 
         setImage(file.secure_url)
         handleImageChenge(file.secure_url)
-        console.log(file.secure_url)
+        getData()
         setLoading(false)
     }
 
@@ -116,7 +115,7 @@ const NewsFeed = () => {
     return <>
         <Jumbotron className="container mt-5">
             <h2>News Feed</h2>
-
+            { session.participationStatus === 1 && <div>
             {!formNewOn && <button onClick={toggleForm}>New Post</button>}
 
             {formNewOn && <div className="newForm--NewsFeed">
@@ -141,9 +140,11 @@ const NewsFeed = () => {
                     <Button type="submit">Post</Button>
                 </Form>
             </div>}
+            </div>
+            }
 
             <div className="container-cards">
-                {news.map(e =>
+                {news.reverse().map(e =>
                     <NewBox key={e.id} news={e} />
                 )}
             </div>

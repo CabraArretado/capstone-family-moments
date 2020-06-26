@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 // Moods
 import ApplicationViews from './components/ApplicationViews';
+import NavBar from "./components/NavBar"
 import API from './module/dataManager'
 import {
   setStorageSession,
@@ -38,13 +39,19 @@ function FamilyMoments(props) {
     setUser(requester)
     }
 
+  const changeParticipationStatus2 = async (status, userId) => {
+      let requester = await API.get("users", userId);
+      requester.participationStatus = status;
+      requester = await API.put("users", requester.id, requester);
+      }
+
 
 
   /*                end LOGIN FEATURES                           */
 
 return  <>
-  <Link to="/tests"><button>TESTS</button></Link> {/* TEST BUTTON USED TO DEVELOPMENT*/}
-  <ApplicationViews setUser={setUser} hasUser={hasUser} session={session} setSession={setSession} changeParticipationStatus={changeParticipationStatus} /> 
+  <NavBar />
+  <ApplicationViews setUser={setUser} hasUser={hasUser} session={session} setSession={setSession} changeParticipationStatus2={changeParticipationStatus2} changeParticipationStatus={changeParticipationStatus} /> 
   </>
 }
 export default FamilyMoments;

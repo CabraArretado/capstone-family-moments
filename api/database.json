@@ -1,73 +1,9 @@
 {
   "users": [
-    {
-      "firstname": "Amanda",
-      "lastname": "Smith",
-      "email": "amanda@amanda",
-      "password": "a",
-      "eventId": 2,
-      "participationStatus": 1,
-      "id": 1
-    }
   ],
   "messages": [],
   "events": [
-    {
-      "name": "Amanda's Birthday",
-      "userId": 0,
-      "address": "900 Fictional St.",
-      "date": "2020-08-19",
-      "time": "14:17",
-      "description": "We are celebrating my 50th birthday! I expect you all here!",
-      "eventcode": "AMANDA",
-      "id": 1
-    },
-    {
-      "name": "Felipe Bday",
-      "userId": 1,
-      "address": "l",
-      "date": "2020-06-10",
-      "time": "12:29",
-      "description": "kk",
-      "eventcode": "aaaaaa",
-      "id": 2
-    }
   ],
   "news": [
-    {
-      "title": "The party is gonna start!",
-      "eventId": 1,
-      "content": "Look at this amazing image",
-      "hasPicture": true,
-      "pictureUrl": "https://res.cloudinary.com/dqhswasf6/image/upload/v1593101959/testes/pzbgzxxhw1laynsohheo.png",
-      "id": 1
-    },
-    {
-      "title": "Hello, world!",
-      "eventId": 2,
-      "userId": 1,
-      "content": "Look at this amazing image",
-      "hasPicture": false,
-      "pictureUrl": "",
-      "id": 2
-    },
-    {
-      "title": "Hello, world!",
-      "eventId": 2,
-      "userId": 1,
-      "content": "Look at this amazing image",
-      "hasPicture": true,
-      "pictureUrl": "https://res.cloudinary.com/dqhswasf6/image/upload/v1593103130/testes/hrte5ocl6glwq1wydd1g.png",
-      "id": 3
-    },
-    {
-      "title": "Teste",
-      "eventId": 2,
-      "userId": 1,
-      "content": "Mais um teste",
-      "hasPicture": false,
-      "pictureUrl": "",
-      "id": 4
-    }
   ]
 }

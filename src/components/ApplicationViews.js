@@ -6,13 +6,17 @@ import Welcome from "./Welcome/Welcome"
 import Register from "./Register/Register"
 import Login from "./Login/Login"
 import HomeClean from "./HomeClean/HomeClean"
+import HomeDeclined from "./HomeClean/HomeDeclined"
 import RegisterEvent from "./RegisterEvent/RegisterEvent"
 import JoinEvent from "./JoinEvent/JoinEvent"
 import WaitingAprovation from "./JoinEvent/WaitingAprovation"
 import NewsFeed from "./NewsFeed/NewsFeed"
 import Info from "./Info/Info"
+import InfoParticipant from "./Info/InfoParticipant"
+import RequestList from "./ManageParticipation/RequestList"
 
-import {getStorageSession} from "../Helpers"
+
+import { getStorageSession } from "../Helpers"
 
 const ApplicationViews = (props) => {
     const hasUser = props.hasUser;
@@ -21,12 +25,13 @@ const ApplicationViews = (props) => {
     const session = props.session;
     const setSession = props.setSession
     const changeParticipationStatus = props.changeParticipationStatus
-    
+    const changeParticipationStatus2 = props.changeParticipationStatus2
+
 
     return (
         <>
 
-        {/* Not Loged in part */}
+            {/* Not Loged in part */}
             <Route
                 exact
                 path="/"
@@ -72,7 +77,7 @@ const ApplicationViews = (props) => {
 
                     // no user
                     if (!hasUser) {
-                        return <Redirect to="/welcome" />;
+                        return <Redirect to="/" />;
                     }
                     // No event
                     else if (session.participationStatus === 0) {
@@ -83,15 +88,19 @@ const ApplicationViews = (props) => {
                     else if (session.participationStatus === 1) {
                         return <Info {...props} />
                     }
-                    
-                    // 
-                    // else if (session.participationStatus === 2) {
-                    //     return <Info {...props} />
-                    // }
+
+                    // Event participant
+                    else if (session.participationStatus === 2) {
+                        return <InfoParticipant {...props} />
+                    }
 
                     // Waiting Approvation
                     else if (session.participationStatus === 3) {
                         return <WaitingAprovation {...props} />
+                    }
+
+                    else if (session.participationStatus === 4) {
+                        return <HomeDeclined changeParticipationStatus={changeParticipationStatus} {...props} />
                     }
                 }}
             />
@@ -100,7 +109,20 @@ const ApplicationViews = (props) => {
                 exact
                 path="/searchevent"
                 render={props => {
-                    return <JoinEvent setEventId={setEventId}{...props} />;
+                    return <JoinEvent changeParticipationStatus={changeParticipationStatus} setEventId={setEventId}{...props} />;
+                }}
+            />
+
+            <Route
+                exact
+                path="/news"
+                render={props => {
+                    if (session.participationStatus === 2 || session.participationStatus === 1) {
+                        return <NewsFeed {...props} />
+                    }
+                    else {
+                        return <Redirect to="/home" />;
+                    }
                 }}
             />
 
@@ -111,13 +133,17 @@ const ApplicationViews = (props) => {
                     return <RegisterEvent changeParticipationStatus={changeParticipationStatus} setUser={setUser} {...props} />;
                 }}
             />
-
-            {/* TESTE PAGE */}
             <Route
                 exact
-                path="/tests"
+                path="/requestlist"
                 render={props => {
-                    return <NewsFeed {...props} />;
+                    if (!session.participationStatus === 1) {
+                        return <Redirect to="/home" />;
+                    }
+                    // Event owner
+                    else if (session.participationStatus === 1) {
+                        return <RequestList changeParticipationStatus2={changeParticipationStatus2} {...props} />
+                    }
                 }}
             />
         </>
