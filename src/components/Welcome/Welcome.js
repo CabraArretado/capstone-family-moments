@@ -4,9 +4,8 @@ import { Link } from "react-router-dom";
 
 const Welcome = (props) => {
     return (
-        <div>
-            <Jumbotron className="container mt-5">
-                <h1 className="display-3">Welcome to Family Moments!</h1>
+        <>
+                <h1 className="--page-title">Welcome to Family Moments!</h1>
                 <p className="lead">Family gatherings made easy</p>
                 <hr className="my-2" />
 
@@ -19,13 +18,12 @@ const Welcome = (props) => {
                     </div>
                     <div className="col">
                         <p className="lead">
-                            Already have a account?
+                            Already have an account?
                         </p>
                         <Link to="/login"><Button color="dark">Login</Button></Link>
                     </div>
                 </div>
-            </Jumbotron>
-        </div>
+        </>
     );
 };
 

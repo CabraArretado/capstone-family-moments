@@ -11,9 +11,8 @@ import {
 
 import { getStorageSession } from "../Helpers"
 
-const NavBar = () => {
+const NavBar = (props) => {
     let session = getStorageSession()
-
     return <>
     <Link to="/home"><Button>Home</Button></Link>
     { (session.participationStatus === 1 || session.participationStatus === 2) && <Link to="/news"><Button>News Feed</Button></Link>}

@@ -63,7 +63,7 @@ const Register = (props) => {
 
     return <>
         <Comeback />
-        <Jumbotron className="container mt-5">
+        <Jumbotron className="container">
             <h1 className="display-3">Register Account</h1>
             <p>To have acess to the app you must create an account!</p>
             <hr />

@@ -43,7 +43,7 @@ const NewsFeed = () => {
     // Getting ALL news from the API
     const getData = async () => {
         let dataNews = await API.getWhereExpand("news", "eventId", session.eventId, "event")
-        setNews(dataNews)
+        setNews(dataNews.reverse())
     }
 
     useEffect(() => {
@@ -65,7 +65,10 @@ const NewsFeed = () => {
 
     const handlePost = async (e) => {
         e.preventDefault();
-        let toPost = await API.post("news", newToPost)
+        if (!newToPost.title || !newToPost.content){
+            return alert("Please, provide Title and/or Content")
+        }
+        await API.post("news", newToPost)
         toggleForm()
     }
 
@@ -90,16 +93,15 @@ const NewsFeed = () => {
                 body: data
             }
         )
-        console.log(data)
         const file = await res.json()
 
         setImage(file.secure_url)
-        handleImageChenge(file.secure_url)
+        handleImageChange(file.secure_url)
         getData()
         setLoading(false)
     }
 
-    const handleImageChenge = (link) => {
+    const handleImageChange = (link) => {
         let stateToChange = {...newToPost}
         if (!!link){
             stateToChange.pictureUrl = link;
@@ -120,8 +122,8 @@ const NewsFeed = () => {
 
             {formNewOn && <div className="newForm--NewsFeed">
                 <Form onSubmit={handlePost}>
-                    <Input onChange={handleChanges} type="text" id="title" placeholder="Title"></Input>
-                    <Input onChange={handleChanges} type="text" id="content" placeholder="Content"></Input>
+                    <Input onChange={handleChanges} required type="text" id="title" placeholder="Title"></Input>
+                    <Input onChange={handleChanges} required type="text" id="content" placeholder="Content"></Input>
                     <div className="form-row p-2">
                         <Label className="col-2" for="file">Upload Image</Label>
                         <input
@@ -144,7 +146,7 @@ const NewsFeed = () => {
             }
 
             <div className="container-cards">
-                {news.reverse().map(e =>
+                {news.map(e =>
                     <NewBox key={e.id} news={e} />
                 )}
             </div>

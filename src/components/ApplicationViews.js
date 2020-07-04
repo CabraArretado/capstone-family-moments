@@ -12,6 +12,7 @@ import JoinEvent from "./JoinEvent/JoinEvent"
 import WaitingAprovation from "./JoinEvent/WaitingAprovation"
 import NewsFeed from "./NewsFeed/NewsFeed"
 import Info from "./Info/Info"
+import InfoToEdit from "./Info/InfoToEdit"
 import InfoParticipant from "./Info/InfoParticipant"
 import RequestList from "./ManageParticipation/RequestList"
 
@@ -96,7 +97,7 @@ const ApplicationViews = (props) => {
 
                     // Waiting Approvation
                     else if (session.participationStatus === 3) {
-                        return <WaitingAprovation {...props} />
+                        return <WaitingAprovation setUser={setUser} {...props} />
                     }
 
                     else if (session.participationStatus === 4) {
@@ -109,6 +110,9 @@ const ApplicationViews = (props) => {
                 exact
                 path="/searchevent"
                 render={props => {
+                    if (!hasUser) {
+                        return <Redirect to="/" />;
+                    }
                     return <JoinEvent changeParticipationStatus={changeParticipationStatus} setEventId={setEventId}{...props} />;
                 }}
             />
@@ -117,6 +121,9 @@ const ApplicationViews = (props) => {
                 exact
                 path="/news"
                 render={props => {
+                    if (!hasUser) {
+                        return <Redirect to="/" />;
+                    }
                     if (session.participationStatus === 2 || session.participationStatus === 1) {
                         return <NewsFeed {...props} />
                     }
@@ -130,6 +137,9 @@ const ApplicationViews = (props) => {
                 exact
                 path="/registerevent"
                 render={props => {
+                    if (!hasUser) {
+                        return <Redirect to="/" />;
+                    }
                     return <RegisterEvent changeParticipationStatus={changeParticipationStatus} setUser={setUser} {...props} />;
                 }}
             />
@@ -137,12 +147,32 @@ const ApplicationViews = (props) => {
                 exact
                 path="/requestlist"
                 render={props => {
+                    if (!hasUser) {
+                        return <Redirect to="/" />;
+                    }
                     if (!session.participationStatus === 1) {
                         return <Redirect to="/home" />;
                     }
                     // Event owner
                     else if (session.participationStatus === 1) {
                         return <RequestList changeParticipationStatus2={changeParticipationStatus2} {...props} />
+                    }
+                }}
+            />
+
+<Route
+                exact
+                path="/editevent"
+                render={props => {
+                    if (!hasUser) {
+                        return <Redirect to="/" />;
+                    }
+                    if (!session.participationStatus === 1) {
+                        return <Redirect to="/home" />;
+                    }
+                    // Event owner
+                    else if (session.participationStatus === 1) {
+                        return <InfoToEdit changeParticipationStatus2={changeParticipationStatus2} {...props} />
                     }
                 }}
             />

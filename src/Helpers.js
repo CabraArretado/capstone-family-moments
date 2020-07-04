@@ -84,4 +84,8 @@ await API.put("users", requester.id, requester);
 setStorageSession(requester)
 }
 
+export const isLogged = () => {
+  
+}
+
  /* ----------------------------------------- */

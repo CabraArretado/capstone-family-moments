@@ -11,12 +11,13 @@ import {
 // moods
 import API from "../../module/dataManager.js";
 import {
-    Comeback,
-    getSessionUserId,
-    getSessionEventId
+    getSessionEventId,
+    getStorageSession
 } from "../../Helpers";
 
-const WaitingAprovation = () => {
+const WaitingAprovation = (props) => {
+    let session = getStorageSession()
+    const [user, setUser] = useState(session)
 
     const [event, setEvent] = useState({
         name: "",
@@ -33,6 +34,14 @@ const WaitingAprovation = () => {
         setEvent(i[0])
     }
 
+    let checkUpdate = async () => {
+        let userUpadted = await API.get("users", session.userId)
+        props.setUser(userUpadted)
+        props.history.push("/home")
+    }
+
+
+
     useEffect(() => { callBacks() }, [])
 
     return <>
@@ -46,6 +55,7 @@ const WaitingAprovation = () => {
                     <h5>Address: <span>{event.address}</span> </h5>
                     <h5> {event.description} </h5>
                 </div>
+                <Button onClick={checkUpdate}>Check Status</Button>
             </Jumbotron>
     </>
 }

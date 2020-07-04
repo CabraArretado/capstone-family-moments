@@ -2,11 +2,7 @@ import React, {useState, useReducer, useEffect}from 'react';
 import { Link, Redirect } from "react-router-dom";
 import {
     Jumbotron,
-    Button,
-    Form,
-    FormGroup,
-    Label,
-    Input
+    Button
 } from 'reactstrap';
 
 // moods
@@ -14,9 +10,6 @@ import RequestBox from "./RequestBox"
 
 import API from "../../module/dataManager.js"
 import { 
-    Comeback, 
-    inUse, 
-    generalHandleChanges,
     getStorageSession
 } from "../../Helpers"
 
@@ -33,18 +26,25 @@ const RequestList = (props) => {
         setRequests(requestList)
     }
 
+    const updateRequests = () => {
+        getAllRequests()
+    }
+
     useEffect(()=> {
         getAllRequests()
     }, [trigger])
 
     return <>
+    <Jumbotron>
     <h3>Requests to join on the gathering</h3>
+    <Button onClick={updateRequests}>Refresh Requests</Button>
     <hr className="p-1"/>
     {
         requests.map(e =>
                     <RequestBox key={e.id} user={e} changeParticipationStatus2={changeParticipationStatus2} triggered={triggered}/>
                 )
     }
+    </Jumbotron>
     </>
 }
 

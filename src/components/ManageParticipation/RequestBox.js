@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 import {
     Jumbotron,
     Button,
@@ -14,22 +14,27 @@ import {
 const RequestBox = (props) => {
     let user = props.user
     let id = props.user.id
-    console.log(id)
+    const [solved, setSolved] = useState(false)
 
     const handleAccept = () => {
         props.changeParticipationStatus2(2, id)
         props.triggered()
         alert("Accepted")
+        setSolved(true)
     }
     const handleDecline = () => {
         props.changeParticipationStatus2(4, id)
         props.triggered()
         alert("Declined")
+        setSolved(true)
     }
-    return <div>
+    return <>
+    { !solved && <div className="mt-5">
             <h4>Name: {user.firstname + " "+ user.lastname}</h4>
+            <p>{user.email}</p>
             <Button onClick={handleAccept}>Accept</Button> <Button onClick={handleDecline}>Decline</Button> 
-        </div>
+        </div>}
+        </>
 }
 
 export default RequestBox
