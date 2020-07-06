@@ -115,17 +115,18 @@ const NewsFeed = () => {
         /*------------------------------------*/
 
     return <>
-        <Jumbotron className="container mt-5">
-            <h2>News Feed</h2>
+        <div className="container --yellow-bg">
+            <h2 className="--page-title">News Feed</h2>
             { session.participationStatus === 1 && <div>
-            {!formNewOn && <button onClick={toggleForm}>New Post</button>}
+            {!formNewOn && <button className="--button" onClick={toggleForm}>New Post</button>}
 
             {formNewOn && <div className="newForm--NewsFeed">
                 <Form onSubmit={handlePost}>
                     <Input onChange={handleChanges} required type="text" id="title" placeholder="Title"></Input>
                     <Input onChange={handleChanges} required type="text" id="content" placeholder="Content"></Input>
+                        <br />
                     <div className="form-row p-2">
-                        <Label className="col-2" for="file">Upload Image</Label>
+                        <Label className="col-4" for="file">Upload Image</Label>
                         <input
                             className="col-8"
                             type="file"
@@ -139,18 +140,18 @@ const NewsFeed = () => {
                                 <img alt="" src={image} style={{ width: '300px' }} />
                             )}
                     </div>
-                    <Button type="submit">Post</Button>
+                    <button className="--button" type="submit">Post</button>
                 </Form>
             </div>}
             </div>
             }
 
+        </div>
             <div className="container-cards">
                 {news.map(e =>
                     <NewBox key={e.id} news={e} />
                 )}
             </div>
-        </Jumbotron>
     </>
 }
 

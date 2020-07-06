@@ -19,15 +19,6 @@
       "id": 2
     },
     {
-      "firstname": "Adelia",
-      "lastname": "Smith",
-      "email": "adelia@email",
-      "password": "123",
-      "eventId": null,
-      "participationStatus": 0,
-      "id": 3
-    },
-    {
       "firstname": "Sofia",
       "lastname": "Smith",
       "email": "sofia@email",
@@ -53,9 +44,6 @@
       "eventId": 2,
       "participationStatus": 1,
       "id": 6
-    },
-    {
-      "id": 7
     }
   ],
   "messages": [],
@@ -80,16 +68,6 @@
       "description": "Let's celebrate with Sonia",
       "eventcode": "COLLEG",
       "id": 2
-    },
-    {
-      "name": "a",
-      "userId": 8,
-      "address": "a",
-      "date": "2020-08-01",
-      "time": "18:08",
-      "description": "a",
-      "eventcode": "aaaaaa",
-      "id": 3
     }
   ],
   "news": [

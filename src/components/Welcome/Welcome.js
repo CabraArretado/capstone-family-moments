@@ -10,13 +10,13 @@ const Welcome = (props) => {
                 <hr className="my-2" />
 
                 <div className="form-row">
-                    <div className="col">
-                        <p className="lead">
+                    <div className="col --yellow-bg">
+                        <p className="--superbold">
                             Are you new here?
                         </p>
                         <Link to="/register"><Button color="dark">Register</Button></Link>
                     </div>
-                    <div className="col">
+                    <div className="col --yellow-bg">
                         <p className="lead">
                             Already have an account?
                         </p>

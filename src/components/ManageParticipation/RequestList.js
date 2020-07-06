@@ -1,4 +1,4 @@
-import React, {useState, useReducer, useEffect}from 'react';
+import React, { useState, useReducer, useEffect } from 'react';
 import { Link, Redirect } from "react-router-dom";
 import {
     Jumbotron,
@@ -9,7 +9,7 @@ import {
 import RequestBox from "./RequestBox"
 
 import API from "../../module/dataManager.js"
-import { 
+import {
     getStorageSession
 } from "../../Helpers"
 
@@ -30,21 +30,24 @@ const RequestList = (props) => {
         getAllRequests()
     }
 
-    useEffect(()=> {
+    useEffect(() => {
         getAllRequests()
     }, [trigger])
 
     return <>
-    <Jumbotron>
-    <h3>Requests to join on the gathering</h3>
-    <Button onClick={updateRequests}>Refresh Requests</Button>
-    <hr className="p-1"/>
-    {
-        requests.map(e =>
-                    <RequestBox key={e.id} user={e} changeParticipationStatus2={changeParticipationStatus2} triggered={triggered}/>
+        <div className="container --yellow-bg">
+            <h3 className="--page-title">Requests</h3>
+            <button className="--button" onClick={updateRequests}>Refresh Requests</button>
+            <hr className="p-1" />
+        {
+            (requests.length > 0) &&  requests.map(e =>
+                    <RequestBox key={e.id} user={e} changeParticipationStatus2={changeParticipationStatus2} triggered={triggered} />
                 )
-    }
-    </Jumbotron>
+        }
+        {
+            (requests.length === 0) && <p>No request found.</p>
+        }
+    </div>
     </>
 }
 

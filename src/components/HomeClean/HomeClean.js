@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 const HomeClean = (props) => {
     return (
         <div>
-            <Jumbotron className="container mt-5">
-                <h1 className="display-3">Welcome to Family Moments!</h1>
+            <div className="container --yellow-bg">
+                <h1 className="--page-title">Welcome to Family Moments!</h1>
                 <p className="lead">Looks like you are not linked to any gathering! Create one or join one to enjoy the app!</p>
                 <hr className="my-2" />
                 <div className="">
@@ -14,17 +14,17 @@ const HomeClean = (props) => {
                         <p className="lead">
                             If you wanna create a new ghatering for your family click in the button bellow!
                         </p>
-                        <Link to="/registerevent"><Button color="dark">Create a gathering!</Button></Link>
+                        <Link to="/registerevent"><button className="--button">Create a gathering!</button></Link>
                     </div>
                     <hr className="my-2" />
                     <div className="">
                         <p className="lead">
                             If you wanna join in an existent gathering click in the buton bellow!
                         </p>
-                        <Link to="/searchevent"><Button color="dark">Join in a gathering!</Button></Link>
+                        <Link to="/searchevent"><button className="--button">Join in a gathering!</button></Link>
                     </div>
                 </div>
-            </Jumbotron>
+            </div>
         </div>
     );
 };

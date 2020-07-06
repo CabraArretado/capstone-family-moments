@@ -9,7 +9,7 @@ export const Comeback = () => {
   let history = useHistory();
   return (
     <>
-      <button onClick={() => history.goBack()}>Back</button>
+      <button className="--button" onClick={() => history.goBack()}>⇦</button>
     </>
   );
 };

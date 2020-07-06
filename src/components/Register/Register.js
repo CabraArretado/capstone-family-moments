@@ -21,7 +21,7 @@ import {
 const Register = (props) => {
 
     // Variables
-    const [credentials, setCredentials] = useState({ firstname: "", lastname: "" , email: "", password: "", eventId: null, participationStatus: 0 });
+    const [credentials, setCredentials] = useState({ firstname: "", lastname: "" , email: "", password: "", eventId: 0, participationStatus: 0 });
     const [confirmation, setConfirmation] = useState(null);
 
     // Handle changes in the username, email, password

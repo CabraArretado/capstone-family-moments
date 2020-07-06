@@ -27,15 +27,16 @@ const InfoToEdit = (props) => {
     // }
 
     const [isLoading, setIsLoading] = useState(false)
-    const [informacao, setInformacao] = useState({});
-    // name: "" ,
-    // id: null, 
-    // userId: null, 
-    // address: "", 
-    // date: "", 
-    // time: "", 
-    // description: "", 
-    // eventcode: "" ,
+    const [informacao, setInformacao] = useState({
+        name: "" ,
+        id: null, 
+        userId: null, 
+        address: "", 
+        date: "", 
+        time: "", 
+        description: "", 
+        eventcode: "" ,
+    });
 
     // Handle changes
     const handleChange = (e) => {

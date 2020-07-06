@@ -87,7 +87,7 @@ const ApplicationViews = (props) => {
 
                     // Event owner
                     else if (session.participationStatus === 1) {
-                        return <Info {...props} />
+                        return <Info changeParticipationStatus={changeParticipationStatus} {...props} />
                     }
 
                     // Event participant

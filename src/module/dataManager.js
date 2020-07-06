@@ -16,13 +16,12 @@ export default {
     },
 
     //DELETE
-    async delete(list, id) {
-        let i = await fetch(`${remoteURL}/${list}/${id}`, {
+    delete(list, id) {
+        return fetch(`${remoteURL}/${list}/${id}`, {
             method: "DELETE",
             headers: { 'Content-Type': 'application/json' }
-        })
-        i = i.json()
-        return i
+        }).then(data => data.json())
+
     },
 
     // POST

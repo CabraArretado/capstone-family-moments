@@ -50,6 +50,14 @@ const Info = (props) => {
 
     const handleDelete = async () => {
         let i = await API.delete("events", session.eventId)
+        props.changeParticipationStatus(0, 0)
+        console.log(i)
+        return i
+    }
+
+    const together = async () => {
+        toggle()
+        await handleDelete()
     }
 
 
@@ -62,20 +70,18 @@ const Info = (props) => {
                 <ModalHeader toggle={toggle}>DELETE GATHERING</ModalHeader>
                 <ModalBody>
                     Are you sure you want to delete your gathering?
-        </ModalBody>
+                    The data will be permanently lost.
+                </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onClick={ () => {
-                    toggle()
-                    handleDelete()
-                    }}>Do Something</Button>
+                    <Button color="primary" onClick={together}>I am sure</Button>
                     <Button color="secondary" onClick={toggle}>Cancel</Button>
                 </ModalFooter>
             </Modal>
         </div>
-        <Jumbotron className="container mt-5">
+        <div className="container --yellow-bg">
             <div>
                 <div>
-                    <h2>Welcome!</h2>
+                    <h2 className="--page-title">Welcome!</h2>
                     <p>You are the administrator of {event.name}</p>
                     <h4>{event.name}</h4>
                     <h5>{event.date} at {event.time}</h5>
@@ -83,11 +89,14 @@ const Info = (props) => {
                     <h5> {event.description} </h5>
                     <h4>EVENT CODE: {event.eventcode}</h4>
                     <div>
-                        <Button onClick={handleEdit}>Edit Info</Button><Button onClick={toggle}>Delete</Button>
+                        <button className="--button" onClick={handleEdit}>Edit</button>{' '}
                     </div>
                 </div>
             </div>
-        </Jumbotron>
+        </div>
+        <button onClick={toggle} className="btn btn-link">
+            Delete my gathering
+        </button>
     </>
 }
 
