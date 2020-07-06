@@ -10,7 +10,8 @@ import API from './module/dataManager'
 import {
   setStorageSession,
   getStorageSession,
-  getSessionUserId
+  getSessionUserId,
+  getUserStorageSession
 } from './Helpers'
 import "./App.css"
 
@@ -26,18 +27,19 @@ function FamilyMoments(props) {
 
 
   // Set the user ID in the register
-  const setUser = (user) => {
-    setSession(user)
-    setStorageSession(user)
+  const setUser = (user, participation) => {
+    console.log("setUser: ", user, participation)
+    setStorageSession({...user, participation})
+    setSession(getStorageSession())
     setHasUser(isAuthenticated());
   }
 
   const changeParticipationStatus = async (eventId, status) => {
-    let requester = await API.get("users", getSessionUserId());
+    let requester = await API.getWhereAnd("participations", "userId", getSessionUserId());
     requester.eventId = eventId;
     requester.participationStatus = status;
-    requester = await API.put("users", requester.id, requester);
-    setUser(requester)
+    requester = await API.put("participations", requester.id, requester);
+    setUser(getUserStorageSession(), requester)
   }
 
   const changeParticipationStatus2 = async (status, userId) => {
@@ -71,9 +73,9 @@ function FamilyMoments(props) {
   /*                end LOGIN FEATURES                           */
 
   return <>
-    <SideBar />
+    { isAuthenticated && <SideBar />}
     <div className="--main">
-    <div className="--top-side"></div>
+      <div className="--top-side"></div>
       <ApplicationViews trigger={trigger} tools={tools} setUser={setUser} hasUser={hasUser} session={session} setSession={setSession} changeParticipationStatus2={changeParticipationStatus2} changeParticipationStatus={changeParticipationStatus} />
     </div>
   </>

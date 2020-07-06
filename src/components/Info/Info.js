@@ -49,7 +49,10 @@ const Info = (props) => {
 
 
     const handleDelete = async () => {
-        let i = await API.delete("events", session.eventId)
+        let eventTemp = session.eventId
+        let userEventPart = await API.getWhere("users", "eventId", eventTemp)
+        
+        let i = await API.delete("events", eventTemp)
         props.changeParticipationStatus(0, 0)
         console.log(i)
         return i

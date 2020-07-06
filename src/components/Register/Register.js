@@ -21,7 +21,7 @@ import {
 const Register = (props) => {
 
     // Variables
-    const [credentials, setCredentials] = useState({ firstname: "", lastname: "" , email: "", password: "", eventId: 0, participationStatus: 0 });
+    const [credentials, setCredentials] = useState({ firstname: "", lastname: "" , email: "", password: ""});
     const [confirmation, setConfirmation] = useState(null);
 
     // Handle changes in the username, email, password
@@ -37,25 +37,27 @@ const Register = (props) => {
     }
 
     // Register the use in the DB
-    const createUser = (obj) => {
-            return API.post("users", obj)
-    }
-
-    // Register the user and log him in
-    const handleRegister = async (e) => {
-        e.preventDefault();
-        if (await inUse("users", credentials, "email")) {
-            alert("Email already cadastred!")
+    const createUser = async (obj) => {
+            let data = await API.post("users", obj)
+            return data
         }
-        else if (!credentials.firstname || !credentials.password || !credentials.email || !credentials.lastname) {
-            alert("Please, provide all the information in order to create a account")
-        }
-        else if (credentials.password !== confirmation) {
-            alert("Password and confirmation don't match")
-        }
-        else {
+        
+        // Register the user and log him in
+        const handleRegister = async (e) => {
+            e.preventDefault();
+            if (await inUse("users", credentials, "email")) {
+                alert("Email already cadastred!")
+            }
+            else if (!credentials.firstname || !credentials.password || !credentials.email || !credentials.lastname) {
+                alert("Please, provide all the information in order to create a account")
+            }
+            else if (credentials.password !== confirmation) {
+                alert("Password and confirmation don't match")
+            }
+            else {
             let data = await createUser(credentials)
-            props.setUser(data)
+            let participation = await API.post("participations", {userId: data.id, eventId: 0, participationStatus: 0})
+            props.setUser(data, participation)
             props.history.push("/");
         }
     }
