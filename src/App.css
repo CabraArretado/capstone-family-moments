@@ -14,7 +14,8 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  /* background-color: #282c34; */
+  background-color:#ffff99;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -28,18 +29,199 @@
   color: #61dafb;
 }
 
-/* Moods */
+/* Mods */
 
-.__eventcode__Register{ 
-  border-color: #fd5a05;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(253, 90, 5, 0.6); 
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(253, 90, 5, 0.6);}
+/* Burger button ------------------------------------------------------------ */
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  left: 36px;
+  top: 20px;
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: #373a47;
+}
+
+/* Color/shape of burger icon bars on hover*/
+.bm-burger-bars-hover {
+  background: #a90000;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #bdc3c7;
+}
+
+/*
+Sidebar wrapper styles
+Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+*/
+.bm-menu-wrap {
+  position: fixed;
+  height: 100%;
+  text-align: center;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background:rgb(246, 203, 9, .95);
+  font-family: 'Shadows Into Light', serif;
+  font-size: 100px;
+  font-weight: bolder;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: #b8b7ad;
+  padding: 0.8em;
+}
+
+/* Individual item */
+.bm-item {
+  display: inline-block;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* --------------------------- */
+
+/* Mods */
+
+.--top-side {
+  padding: 22px;
+}
+
+.--main {
+  margin: 0 20px;
+  padding: 20px;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+}
+
+html body {
+  background-image: url("https://storage.needpix.com/rsynced_images/checkered-tablecloth-3-1465133410LRe.jpg");
+  background-color:#ffff99;
+  text-align: center;
+}
 
 .iphone-x-size {
   width: 800px;
   height: auto;
 }
 
-.newbox--newsfeed {
+/* ------ News Feed ---- */
+.--newbox--newsfeed {
   border: 1px solid black;
+  border-radius:42px;
+  background-color:rgb(136, 57, 34, .8);
+  color: white;
+  border:1px solid #f6cb09;
+  margin: 5px;
+}
+
+.--nb--picture {
+  border-radius:15px;
+}
+
+.--nb--title {
+  font-weight: bolder;
+  font-size: 45px;
+  font-family: 'Roboto Slab', serif;
+}
+
+.--nb--content {
+  font-weight: bolder;
+  font-size: 17px;
+  font-family: 'Roboto Slab', serif;
+}
+
+/* --------------- Usable ------------------- */
+.--page-title {
+  font-family: 'Shadows Into Light', serif;
+  font-size: 60px;
+  font-weight: bolder;
+  /* className="--page-title" */
+}
+
+.--yellow-bg {
+  background-color:rgb(255, 102, 0, .8);
+  padding: 10px;
+  margin: 20px;
+  border-radius:42px;
+  border:1px solid #f6cb09;
+    /* className="--yellow-bg" */
+}
+
+.--superbold {
+  font-weight: bolder;
+  font-size: 17px;
+  font-family: 'Roboto Slab', serif;
+  /* className="--superbold" */
+}
+
+.--superboldBIG {
+  font-weight: bolder;
+  font-size: 30px;
+  font-family: 'Roboto Slab', serif;
+  /* className="--superbold" */
+}
+
+.--letter {
+  font-family: 'Roboto Slab', serif;
+  font-weight: bolder;
+  color: #942911;
+}
+
+.--button {
+  border-radius: 42px;
+  font-family: 'Shadows Into Light', serif;
+  font-weight: 1200;
+  font-size: 22px;
+	box-shadow:inset 0px 1px 0px 0px #cf866c;
+	background:linear-gradient(to bottom, #d0451b 5%, #bc3315 100%);
+	background-color:#d0451b;
+	border:1px solid #942911;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #854629;
+  /* className="--button" */
+}
+
+.--return {
+  width: 70px;
+  height: 70px;
+  padding: 10px;
+  text-align: center;
+}
+
+.--event-found {
+  border-radius: 42px;
+  color: white;
+  border:1px solid #f6cb09;
+  margin: 5px;
 }

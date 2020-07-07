@@ -1,108 +1,188 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from "react-router-dom";
 import {
-    Jumbotron,
     Button,
     Form,
     FormGroup,
-    Input,
-    Label
+    Label,
+    Input
 } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 // moods
 import API from "../../module/dataManager.js";
 import {
-    Comeback,
     getSessionUserId,
     getSessionEventId,
-    generalHandleChanges
+    generalHandleChanges,
+    getStorageSession,
+    setStorageParticipationSession,
+    getStorageUserSession,
+    inUse
 } from "../../Helpers";
 
-const Info = () => {
+const Info = (props) => {
+
+    let session = props.session
+    let setUser = props.setUser
 
     const [event, setEvent] = useState({
         name: "",
-        user: { firstname: "", lastname: "" },
+        id: "",
+        // user: { firstname: "", lastname: "" },
         date: "",
         time: "",
         address: "",
         description: "",
         eventcode: ""
     })
-    const [editing, setEditing] = useState(false)
-    // const [editing, setEditing] = useState(false)
 
-    const toggleEdditing = () => {
-        setEditing(!editing)
-    }
-    // hey
+    const [isLoading, setIsLoading] = useState(false)
+    const [informacao, setInformacao] = useState({
+        name: "",
+        id: "",
+        userId: "",
+        address: "",
+        date: "",
+        time: "",
+        description: "",
+        eventcode: "",
+    });
+
+
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    const [modal, setModal] = useState(false);
+    const toggle = () => setModal(!modal);
+
+    const [show2, setShow2] = useState(false);
+    const handleClose2 = () => setShow2(false);
+    const handleShow2 = () => setShow2(true);
+    const [modal2, setModal2] = useState(false);
+    const toggle2 = () => setModal2(!modal2);
 
     let callBacks = async () => {
-        let i = await API.getWhereExpand("events", "id", getSessionEventId(), "user")
-        setEvent(i[0])
+        let i = await API.get("events", getSessionEventId())
+        setEvent(i)
+        setInformacao(i)
     }
 
-    const handleEdit = (e) => {
+
+    // const handleDelete = async () => {
+    //     let eventTemp = session.eventId
+    //     let userEventPart = await API.getWhere("users", "eventId", eventTemp)
+
+    //     let i = await API.delete("events", eventTemp)
+    //     props.changeParticipationStatus(0, 0)
+    //     console.log(i)
+    //     return i
+    // }
+
+    const together = async (e) => {
         e.preventDefault();
-        toggleEdditing();
+        toggle()
+        // await handleDelete()
     }
 
+    // EDIT ////////////////////////
+    // Handle changes
     const handleChange = (e) => {
-        e.preventDefault();
-        generalHandleChanges(e, event, setEvent)
-        toggleEdditing()
+        generalHandleChanges(e, informacao, setInformacao)
+        console.log(informacao)
     }
+
+    const handleEdit = async () => {
+        setIsLoading(true)
+        if (!informacao.name || !informacao.address || !informacao.date || !informacao.time || !informacao.description || !informacao.eventcode) {
+            alert("Please, provide all the information in order to create a gathering!")
+            setIsLoading(false)
+        } else if (informacao.eventcode !== event.eventcode && await inUse("events", informacao, "eventcode")){
+            alert("EVENT CODE already in use. Please choose other!")
+            setIsLoading(false)
+        } else {
+            let data = await API.put("events",event.id, informacao)
+            setEvent(data)
+            setIsLoading(false)
+        }
+    }
+
+    const together2 = async (e) => {
+        e.preventDefault();
+        handleEdit();
+        toggle2();
+    }
+
+
 
     useEffect(() => { callBacks() }, [])
 
     return <>
-        <Jumbotron className="container mt-5">
-            <h2>Welcome!</h2> 
-            <p>You are the administrator of {event.name}</p>
-                {
-                    !editing && <div>
+        <div>
+            <Modal isOpen={modal2} toggle={toggle2} backdrop="static">
+                <ModalHeader toggle={toggle2}>Edit</ModalHeader>
+                <ModalBody>
+                    <h1 className="display-3">Editing Gathering</h1>
+                    <p>Let's do it!</p>
+                    <hr />
+                    <Form>
+                        <FormGroup>
+                            <Label for="name">Gathering's Title</Label>
+                            <Input required onChange={handleChange} value={informacao.name} type="text" name="name" id="name" placeholder="Gathering's Title" />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for="address">Address</Label>
+                            <Input required onChange={handleChange} value={informacao.address} type="text" name="address" id="address" placeholder="Address" />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for="datatime">When</Label>
+                            <Input required onChange={handleChange} value={informacao.date} type="date" name="date" id="date" />
+                            <Input required onChange={handleChange} value={informacao.time} type="time" name="time" id="time" />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for="description">Description</Label>
+                            <textarea required value={informacao.description} onChange={handleChange} className="form-control" id="description" name="description" rows="3" placeholder="What's we are celebrating?"></textarea>
+                        </FormGroup>
+                    </Form>
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="primary" disabled={isLoading} onClick={together2}>Submit</Button>
+                    <Button color="secondary" onClick={toggle2}>Cancel</Button>
+                </ModalFooter>
+            </Modal>
+        </div>
+        <div>
+            <Modal isOpen={modal} toggle={toggle} backdrop="static">
+                <ModalHeader toggle={toggle}>DELETE GATHERING</ModalHeader>
+                <ModalBody>
+                    Are you sure you want to delete your gathering?
+                    The data will be permanently lost.
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="primary" onClick={together}>I am sure</Button>
+                    <Button color="secondary" onClick={toggle}>Cancel</Button>
+                </ModalFooter>
+            </Modal>
+        </div>
+        <div className="container --yellow-bg">
+            <div>
+                <div>
+                    <h2 className="--page-title">Welcome!</h2>
+                    <p>You are the administrator of {event.name}</p>
                     <h4>{event.name}</h4>
                     <h5>{event.date} at {event.time}</h5>
                     <h5>Address: <span>{event.address}</span> </h5>
                     <h5> {event.description} </h5>
                     <h4>EVENT CODE: {event.eventcode}</h4>
-                <div>
-                    <Button onClick={handleEdit}>Edit Info</Button>
+                    <div>
+                        <button className="--button" onClick={toggle2}>Edit</button>{' '}
+                    </div>
                 </div>
-                </div>
-                }
-                {
-                    editing && <div>
-                    <Form>
-                <FormGroup>
-                    <Label for="name">Gathering's Title</Label>
-                    <Input required onChange={handleChange} type="text" name="name" id="name" placeholder="Gathering's Title" />
-                </FormGroup>
-                <FormGroup>
-                    <Label for="address">Address</Label>
-                    <Input required onChange={handleChange} type="text" name="address" id="address" placeholder="Address" />
-                </FormGroup>
-                <FormGroup>
-                    <Label for="datatime">When</Label>
-                    <Input required onChange={handleChange} type="date" name="date" id="date"/>
-                    <Input required onChange={handleChange} type="time" name="time" id="time"/>
-                </FormGroup>
-                <FormGroup>
-                    <Label for="description">Description</Label>
-                    <textarea required onChange={handleChange} className="form-control" id="description" name="description" rows="3" placeholder="What's we are celebrating?"></textarea>
-                </FormGroup>
-                <FormGroup>
-                    <Label for="eventcode">EVENT CODE</Label>
-                    <Input className="__eventcode__RegisterEvent" required onChange={handleChange} type="text" name="eventcode" id="eventcode" placeholder="Ex. SMITH2" />
-                    <small id="codeHelper" className="text-muted">
-                        Must be 6 characters. The code must be unique.
-                    </small>
-                </FormGroup>
-                <Button type="submit" className="">Register</Button>
-            </Form>
-                </div>
-                }
-            </Jumbotron>
+            </div>
+        </div>
+        <button onClick={toggle} className="btn btn-link">
+            Delete my gathering
+        </button>
     </>
 }
 

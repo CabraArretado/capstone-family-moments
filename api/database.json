@@ -1,9 +1,84 @@
 {
   "users": [
+    {
+      "firstname": "Felipe",
+      "lastname": "Smith",
+      "email": "a@a",
+      "password": "a",
+      "id": 1
+    },
+    {
+      "firstname": "1",
+      "lastname": "1",
+      "email": "2@2",
+      "password": "2",
+      "id": 2,
+      "participationStatus": 2
+    },
+    {
+      "firstname": "3",
+      "lastname": "3",
+      "email": "3@3",
+      "password": "3",
+      "id": 3
+    },
+    {
+      "firstname": "aa",
+      "lastname": "a",
+      "email": "a@aa",
+      "password": "a",
+      "id": 4
+    }
   ],
-  "messages": [],
   "events": [
+    {
+      "name": "Felipe's bdayyy",
+      "userId": 1,
+      "address": "123 Imaginary ",
+      "date": "2020-07-15",
+      "time": "00:11",
+      "description": "Meme is gooddd",
+      "eventcode": "111111",
+      "id": 1
+    }
+  ],
+  "participations": [
+    {
+      "eventId": 1,
+      "userId": 1,
+      "participationStatus": 1,
+      "id": 1
+    },
+    {
+      "userId": 2,
+      "eventId": 1,
+      "participationId": 2,
+      "participationStatus": 4,
+      "id": 2
+    },
+    {
+      "userId": 3,
+      "eventId": 1,
+      "participationStatus": 2,
+      "id": 3
+    },
+    {
+      "userId": 4,
+      "eventId": 1,
+      "participationId": 4,
+      "participationStatus": 4,
+      "id": 4
+    }
   ],
   "news": [
+    {
+      "title": "Tia Jurema",
+      "eventId": 1,
+      "userId": 1,
+      "content": "Olha ela feliz",
+      "hasPicture": true,
+      "pictureUrl": "https://res.cloudinary.com/dqhswasf6/image/upload/v1594104722/testes/qn3sa6i0gheuwlhu5bux.jpg",
+      "id": 1
+    }
   ]
 }

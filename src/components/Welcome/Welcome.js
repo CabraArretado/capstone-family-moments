@@ -1,31 +1,28 @@
 import React from 'react';
-import { Jumbotron, Button } from 'reactstrap';
 import { Link } from "react-router-dom";
 
 const Welcome = (props) => {
     return (
-        <div>
-            <Jumbotron className="container mt-5">
-                <h1 className="display-3">Welcome to Family Moments!</h1>
-                <p className="lead">Family gatherings made easy</p>
+        <>
+                <h1 className="--page-title">Welcome to Family Moments!</h1>
+                <p className="--superbold">Family gatherings made easy</p>
                 <hr className="my-2" />
 
                 <div className="form-row">
-                    <div className="col">
-                        <p className="lead">
+                    <div className="col --yellow-bg container p-2">
+                        <p className="--superbold">
                             Are you new here?
                         </p>
-                        <Link to="/register"><Button color="dark">Register</Button></Link>
+                        <Link to="/register"><button className="--button">Register</button></Link>
                     </div>
-                    <div className="col">
-                        <p className="lead">
-                            Already have a account?
+                    <div className="col --yellow-bg container p-2">
+                        <p className="--superbold">
+                            Already have an account?
                         </p>
-                        <Link to="/login"><Button color="dark">Login</Button></Link>
+                        <Link to="/login"><button className="--button">Login</button></Link>
                     </div>
                 </div>
-            </Jumbotron>
-        </div>
+        </>
     );
 };
 

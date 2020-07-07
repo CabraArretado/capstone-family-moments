@@ -12,6 +12,7 @@ import JoinEvent from "./JoinEvent/JoinEvent"
 import WaitingAprovation from "./JoinEvent/WaitingAprovation"
 import NewsFeed from "./NewsFeed/NewsFeed"
 import Info from "./Info/Info"
+import InfoToEdit from "./Info/InfoToEdit"
 import InfoParticipant from "./Info/InfoParticipant"
 import RequestList from "./ManageParticipation/RequestList"
 
@@ -26,6 +27,7 @@ const ApplicationViews = (props) => {
     const setSession = props.setSession
     const changeParticipationStatus = props.changeParticipationStatus
     const changeParticipationStatus2 = props.changeParticipationStatus2
+
 
 
     return (
@@ -86,7 +88,7 @@ const ApplicationViews = (props) => {
 
                     // Event owner
                     else if (session.participationStatus === 1) {
-                        return <Info {...props} />
+                        return <Info changeParticipationStatus={changeParticipationStatus} setUser={setUser} session={session} setSession={setSession} {...props} />
                     }
 
                     // Event participant
@@ -96,7 +98,7 @@ const ApplicationViews = (props) => {
 
                     // Waiting Approvation
                     else if (session.participationStatus === 3) {
-                        return <WaitingAprovation {...props} />
+                        return <WaitingAprovation setUser={setUser} {...props} />
                     }
 
                     else if (session.participationStatus === 4) {
@@ -109,7 +111,10 @@ const ApplicationViews = (props) => {
                 exact
                 path="/searchevent"
                 render={props => {
-                    return <JoinEvent changeParticipationStatus={changeParticipationStatus} setEventId={setEventId}{...props} />;
+                    if (!hasUser) {
+                        return <Redirect to="/" />;
+                    }
+                    return <JoinEvent changeParticipationStatus={changeParticipationStatus} session={session} setUser={setUser}{...props} />;
                 }}
             />
 
@@ -117,6 +122,9 @@ const ApplicationViews = (props) => {
                 exact
                 path="/news"
                 render={props => {
+                    if (!hasUser) {
+                        return <Redirect to="/" />;
+                    }
                     if (session.participationStatus === 2 || session.participationStatus === 1) {
                         return <NewsFeed {...props} />
                     }
@@ -130,19 +138,42 @@ const ApplicationViews = (props) => {
                 exact
                 path="/registerevent"
                 render={props => {
-                    return <RegisterEvent changeParticipationStatus={changeParticipationStatus} setUser={setUser} {...props} />;
+                    if (!hasUser) {
+                        return <Redirect to="/" />;
+                    }
+                    return <RegisterEvent changeParticipationStatus={changeParticipationStatus} setUser={setUser} session={session} setSession={setSession} {...props} />;
                 }}
             />
             <Route
                 exact
                 path="/requestlist"
                 render={props => {
+                    if (!hasUser) {
+                        return <Redirect to="/" />;
+                    }
                     if (!session.participationStatus === 1) {
                         return <Redirect to="/home" />;
                     }
                     // Event owner
                     else if (session.participationStatus === 1) {
                         return <RequestList changeParticipationStatus2={changeParticipationStatus2} {...props} />
+                    }
+                }}
+            />
+
+<Route
+                exact
+                path="/editevent"
+                render={props => {
+                    if (!hasUser) {
+                        return <Redirect to="/" />;
+                    }
+                    if (!session.participationStatus === 1) {
+                        return <Redirect to="/home" />;
+                    }
+                    // Event owner
+                    else if (session.participationStatus === 1) {
+                        return <InfoToEdit changeParticipationStatus2={changeParticipationStatus2} {...props} />
                     }
                 }}
             />

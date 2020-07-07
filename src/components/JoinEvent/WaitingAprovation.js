@@ -1,22 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from "react-router-dom";
-import {
-    Jumbotron,
-    Button,
-    Form,
-    FormGroup,
-    Input
-} from 'reactstrap';
 
 // moods
 import API from "../../module/dataManager.js";
 import {
-    Comeback,
-    getSessionUserId,
-    getSessionEventId
+    getSessionEventId,
+    getStorageSession,
+    getParticipationStorageSession,
+    getStorageUserSession
 } from "../../Helpers";
 
-const WaitingAprovation = () => {
+const WaitingAprovation = (props) => {
+    let session = getStorageSession()
+    const [user, setUser] = useState(session)
 
     const [event, setEvent] = useState({
         name: "",
@@ -33,20 +29,30 @@ const WaitingAprovation = () => {
         setEvent(i[0])
     }
 
+    let checkUpdate = async () => {
+        let userUpadted = await API.get("participations", session.participationId)
+        console.log(getStorageUserSession(), userUpadted)
+        // props.setUser(getStorageUserSession(), userUpadted)
+        props.history.push("/home")
+    }
+
+
+
     useEffect(() => { callBacks() }, [])
 
     return <>
-        <Jumbotron className="container mt-5">
-            <h2>Your request for participation was sent!</h2> 
+        <div className="container --yellow-bg">
+            <h2 className="--superboldBIG">Your request for participation was sent!</h2> 
             <p>I will be able to access the gathering as soon as you are accepted by the administrator</p>
-                <div>
-                    <h4>{event.name}</h4>
+                <div className="--letter">
+                    <h2>{event.name}</h2>
                     <h6>by: {event.user.firstname + " " + event.user.lastname}</h6>
-                    <h5>{event.date} at {event.time}</h5>
-                    <h5>Address: <span>{event.address}</span> </h5>
-                    <h5> {event.description} </h5>
+                    <h4>{event.date} at {event.time}</h4>
+                    <h4>Address: <span>{event.address}</span> </h4>
+                    <h4> {event.description} </h4>
                 </div>
-            </Jumbotron>
+                <button className="--button" onClick={checkUpdate}>Check Status</button>
+            </div>
     </>
 }
 

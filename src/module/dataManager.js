@@ -17,10 +17,11 @@ export default {
 
     //DELETE
     delete(list, id) {
-        return fetch(`${remoteURL}//${list}${id}`, {
+        return fetch(`${remoteURL}/${list}/${id}`, {
             method: "DELETE",
             headers: { 'Content-Type': 'application/json' }
         }).then(data => data.json())
+
     },
 
     // POST
@@ -100,9 +101,15 @@ export default {
         return data
     },
 
+    async getWhereAndExpand(list, key, value, key2, value2, list3) {
+        let data = await fetch(`${remoteURL}/${list}?${key}=${value}&${key2}=${value2}&_expand=${list3}`)
+        data = data.json()
+        return data
+    },
+
     //
-    async getWhereExpand(list, key, value, otherId) {
-        let data = await fetch(`${remoteURL}/${list}?${key}=${value}&_expand=${otherId}`)
+    async getWhereExpand(table, key, value, table2) {
+        let data = await fetch(`${remoteURL}/${table}?${key}=${value}&_expand=${table2}`)
         data = data.json()
         return data
     }

@@ -1,35 +1,34 @@
-import React from "react"
-import {
-    Jumbotron,
-    Button,
-    Form,
-    FormGroup,
-    Label,
-    Input
-} from 'reactstrap';
+import React, {useState} from "react"
+
 
 
 //moods
 
 const RequestBox = (props) => {
-    let user = props.user
-    let id = props.user.id
-    console.log(id)
+    let user = props.user.user
+    let participationId = props.user.id
+    const [solved, setSolved] = useState(false)
 
     const handleAccept = () => {
-        props.changeParticipationStatus2(2, id)
+        props.changeParticipationStatus2(participationId, 2)
         props.triggered()
         alert("Accepted")
+        setSolved(true)
     }
     const handleDecline = () => {
-        props.changeParticipationStatus2(4, id)
+        props.changeParticipationStatus2(participationId, 4)
         props.triggered()
         alert("Declined")
+        setSolved(true)
     }
-    return <div>
+    return <>
+    { !solved && <div className="mt-5">
             <h4>Name: {user.firstname + " "+ user.lastname}</h4>
-            <Button onClick={handleAccept}>Accept</Button> <Button onClick={handleDecline}>Decline</Button> 
-        </div>
+            <p>{user.email}</p>
+            <button className="--button mr-1" onClick={handleAccept}>Accept</button> <button className="--button" onClick={handleDecline}>Decline</button>
+            <hr className="mx-1" />
+        </div>}
+        </>
 }
 
 export default RequestBox

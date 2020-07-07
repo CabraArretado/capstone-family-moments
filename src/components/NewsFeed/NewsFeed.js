@@ -43,7 +43,7 @@ const NewsFeed = () => {
     // Getting ALL news from the API
     const getData = async () => {
         let dataNews = await API.getWhereExpand("news", "eventId", session.eventId, "event")
-        setNews(dataNews)
+        setNews(dataNews.reverse())
     }
 
     useEffect(() => {
@@ -65,7 +65,10 @@ const NewsFeed = () => {
 
     const handlePost = async (e) => {
         e.preventDefault();
-        let toPost = await API.post("news", newToPost)
+        if (!newToPost.title || !newToPost.content){
+            return alert("Please, provide Title and/or Content")
+        }
+        await API.post("news", newToPost)
         toggleForm()
     }
 
@@ -90,16 +93,15 @@ const NewsFeed = () => {
                 body: data
             }
         )
-        console.log(data)
         const file = await res.json()
 
         setImage(file.secure_url)
-        handleImageChenge(file.secure_url)
+        handleImageChange(file.secure_url)
         getData()
         setLoading(false)
     }
 
-    const handleImageChenge = (link) => {
+    const handleImageChange = (link) => {
         let stateToChange = {...newToPost}
         if (!!link){
             stateToChange.pictureUrl = link;
@@ -113,17 +115,18 @@ const NewsFeed = () => {
         /*------------------------------------*/
 
     return <>
-        <Jumbotron className="container mt-5">
-            <h2>News Feed</h2>
+        <div className="container --yellow-bg">
+            <h2 className="--page-title">News Feed</h2>
             { session.participationStatus === 1 && <div>
-            {!formNewOn && <button onClick={toggleForm}>New Post</button>}
+            {!formNewOn && <button className="--button" onClick={toggleForm}>New Post</button>}
 
             {formNewOn && <div className="newForm--NewsFeed">
                 <Form onSubmit={handlePost}>
-                    <Input onChange={handleChanges} type="text" id="title" placeholder="Title"></Input>
-                    <Input onChange={handleChanges} type="text" id="content" placeholder="Content"></Input>
+                    <Input onChange={handleChanges} required type="text" id="title" placeholder="Title"></Input>
+                    <Input onChange={handleChanges} required type="text" id="content" placeholder="Content"></Input>
+                        <br />
                     <div className="form-row p-2">
-                        <Label className="col-2" for="file">Upload Image</Label>
+                        <Label className="col-4" for="file">Upload Image</Label>
                         <input
                             className="col-8"
                             type="file"
@@ -134,21 +137,21 @@ const NewsFeed = () => {
                         {loading ? (
                             <h3>Loading...</h3>
                         ) : (
-                                <img alt="" src={image} style={{ width: '300px' }} />
+                                <img alt="" src={image} className="img-fluid" />
                             )}
                     </div>
-                    <Button type="submit">Post</Button>
+                    <button className="--button" type="submit">Post</button>
                 </Form>
             </div>}
             </div>
             }
 
+        </div>
             <div className="container-cards">
-                {news.reverse().map(e =>
+                {news.map(e =>
                     <NewBox key={e.id} news={e} />
                 )}
             </div>
-        </Jumbotron>
     </>
 }
 

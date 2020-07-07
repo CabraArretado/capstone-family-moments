@@ -21,7 +21,7 @@ import {
 const Register = (props) => {
 
     // Variables
-    const [credentials, setCredentials] = useState({ firstname: "", lastname: "" , email: "", password: "", eventId: null, participationStatus: 0 });
+    const [credentials, setCredentials] = useState({ firstname: "", lastname: "" , email: "", password: ""});
     const [confirmation, setConfirmation] = useState(null);
 
     // Handle changes in the username, email, password
@@ -37,25 +37,27 @@ const Register = (props) => {
     }
 
     // Register the use in the DB
-    const createUser = (obj) => {
-            return API.post("users", obj)
-    }
-
-    // Register the user and log him in
-    const handleRegister = async (e) => {
-        e.preventDefault();
-        if (await inUse("users", credentials, "email")) {
-            alert("Email already cadastred!")
+    const createUser = async (obj) => {
+            let data = await API.post("users", obj)
+            return data
         }
-        else if (!credentials.firstname || !credentials.password || !credentials.email || !credentials.lastname) {
-            alert("Please, provide all the information in order to create a account")
-        }
-        else if (credentials.password !== confirmation) {
-            alert("Password and confirmation don't match")
-        }
-        else {
+        
+        // Register the user and log him in
+        const handleRegister = async (e) => {
+            e.preventDefault();
+            if (await inUse("users", credentials, "email")) {
+                alert("Email already cadastred!")
+            }
+            else if (!credentials.firstname || !credentials.password || !credentials.email || !credentials.lastname) {
+                alert("Please, provide all the information in order to create a account")
+            }
+            else if (credentials.password !== confirmation) {
+                alert("Password and confirmation don't match")
+            }
+            else {
             let data = await createUser(credentials)
-            props.setUser(data)
+            let participation = await API.post("participations", {userId: data.id, eventId: 0, participationStatus: 0})
+            props.setUser(data, participation)
             props.history.push("/");
         }
     }
@@ -63,34 +65,34 @@ const Register = (props) => {
 
     return <>
         <Comeback />
-        <Jumbotron className="container mt-5">
-            <h1 className="display-3">Register Account</h1>
+        <div className="container --yellow-bg">
+            <h1 className="--page-title">Register Account</h1>
             <p>To have acess to the app you must create an account!</p>
             <hr />
             <Form onSubmit={handleRegister}>
                 <FormGroup>
-                    <Label for="firstname">First Name</Label>
+                    {/* <Label for="firstname">First Name</Label> */}
                     <Input onChange={handleChange} type="text" name="firstname" id="firstname" placeholder="First Name" />
-                    <Label for="lastname">Last Name</Label>
-                    <Input onChange={handleChange} type="text" name="lastname" id="lastname" placeholder="lastname" />
-                </FormGroup>
-                <FormGroup>
-                    <Label for="email">Email</Label>
+                    {/* <Label for="lastname">Last Name</Label> */}
+                    <br />
+                    <Input onChange={handleChange} type="text" name="lastname" id="lastname" placeholder="Last Name" />
+                <br />
+                    {/* <Label for="email">Email</Label> */}
                     <Input onChange={handleChange} type="email" name="email" id="email" placeholder="Email" />
                 </FormGroup>
                 <div className="form-row">
                     <FormGroup className="col-6">
-                        <Label for="password">Password</Label>
+                        {/* <Label for="password">Password</Label> */}
                         <Input onChange={handleChange} type="password" name="password" id="password" placeholder="Password" />
                     </FormGroup>
                     <FormGroup className="col-6">
-                        <Label for="confirmationInput">Confirm password</Label>
+                        {/* <Label for="confirmationInput">Confirm password</Label> */}
                         <Input onChange={handleConfirmation} type="password" name="confirmation" id="confirmationInput" placeholder="Confirm your password" />
                     </FormGroup>
                 </div>
-                <Button type="submit" className="">Register</Button>
+                <button type="submit" className="--button">Register</button>
             </Form>
-        </Jumbotron>
+        </div>
     </>
 };
 

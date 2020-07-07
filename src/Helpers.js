@@ -9,7 +9,7 @@ export const Comeback = () => {
   let history = useHistory();
   return (
     <>
-      <button onClick={() => history.goBack()}>Back</button>
+      <button className="--button --return" onClick={() => history.goBack()}>⇦</button>
     </>
   );
 };
@@ -38,12 +38,28 @@ export const generalHandleChanges = (event, array, setArray) => {
 
 //  SET USER
 export const setStorageSession = (user) => {
+  // console.log(user)
   sessionStorage.setItem("userId", user.id)
   sessionStorage.setItem("firstname",user.firstname)
   sessionStorage.setItem("lastname",user.lastname)
   sessionStorage.setItem("email",user.email)
+  sessionStorage.setItem("participationId",user.participationId)
   sessionStorage.setItem("eventId",user.eventId)
   sessionStorage.setItem("participationStatus",user.participationStatus)
+}
+
+export const setStorageUserSession = (user) => {
+  sessionStorage.setItem("userId", user.id)
+  sessionStorage.setItem("firstname",user.firstname)
+  sessionStorage.setItem("lastname",user.lastname)
+  sessionStorage.setItem("email",user.email)
+}
+
+export const setStorageParticipationSession = (participation) => {
+  console.log(participation)
+  sessionStorage.setItem("participationId", participation.id)
+  sessionStorage.setItem("eventId",participation.eventId)
+  sessionStorage.setItem("participationStatus",participation.participationStatus)
 }
 
 // SET EVENT ID
@@ -68,20 +84,34 @@ export const getStorageSession  = () => {
     lastname: sessionStorage.getItem("lastname"),
     email: sessionStorage.getItem("email"),
     eventId: parseInt(sessionStorage.getItem("eventId")),
+    participationId: parseInt(sessionStorage.getItem("participationId")),
     participationStatus: parseInt(sessionStorage.getItem("participationStatus"))
+  }
+}
+
+export const getParticipationStorageSession  = () => {
+  return {
+    userId: parseInt(sessionStorage.getItem("userId")),
+    eventId: parseInt(sessionStorage.getItem("eventId")),
+    participationId: parseInt(sessionStorage.getItem("participationId")),
+    participationStatus: parseInt(sessionStorage.getItem("participationStatus"))
+  }
+}
+
+
+export const getStorageUserSession  = () => {
+  return {
+    userId: parseInt(sessionStorage.getItem("userId")),
+    firstname: sessionStorage.getItem("firstname"),
+    lastname: sessionStorage.getItem("lastname"),
+    email: sessionStorage.getItem("email"),
   }
 }
 
  /* ----------------------------------------- */
 
-
-/* Start Login functions */
-export const changeParticipationStatus = async (eventId, status) => {
-let requester = await API.get("users", getSessionUserId());
-requester.eventId = eventId;
-requester.participationStatus = status;
-await API.put("users", requester.id, requester);
-setStorageSession(requester)
+export const isLogged = () => {
+  
 }
 
  /* ----------------------------------------- */
