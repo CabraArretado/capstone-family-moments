@@ -30,9 +30,10 @@ const WaitingAprovation = (props) => {
     }
 
     let checkUpdate = async () => {
-        let userUpadted = await API.get("participations", session.participationId)
-        console.log(getStorageUserSession(), userUpadted)
-        // props.setUser(getStorageUserSession(), userUpadted)
+        let partUpadted = await API.get("participations", session.participationId)
+        let userUpdated = await API.get("users", session.userId)
+        console.log(userUpdated, partUpadted)
+        props.setUser(userUpdated, partUpadted)
         props.history.push("/home")
     }
 

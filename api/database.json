@@ -1,73 +1,73 @@
 {
   "users": [
     {
-      "firstname": "Felipe",
+      "firstname": "Gabriel",
       "lastname": "Smith",
-      "email": "a@a",
-      "password": "a",
-      "id": 1
+      "email": "gabriel@smith",
+      "password": "123",
+      "id": 5
     },
     {
-      "firstname": "1",
-      "lastname": "1",
-      "email": "2@2",
-      "password": "2",
-      "id": 2,
-      "participationStatus": 2
+      "firstname": "Steven",
+      "lastname": "Smith",
+      "email": "steven@email",
+      "password": "123",
+      "id": 6
     },
     {
-      "firstname": "3",
-      "lastname": "3",
-      "email": "3@3",
-      "password": "3",
-      "id": 3
+      "firstname": "John",
+      "lastname": "Smith",
+      "email": "john@email",
+      "password": "1234",
+      "id": 7
     },
     {
-      "firstname": "aa",
-      "lastname": "a",
-      "email": "a@aa",
-      "password": "a",
-      "id": 4
+      "firstname": "Jammie",
+      "lastname": "Smith",
+      "email": "jamie@smith",
+      "password": "123",
+      "id": 8
     }
   ],
   "events": [
     {
-      "name": "Felipe's bdayyy",
-      "userId": 1,
-      "address": "123 Imaginary ",
-      "date": "2020-07-15",
-      "time": "00:11",
-      "description": "Meme is gooddd",
-      "eventcode": "111111",
-      "id": 1
+      "name": "Mommy's Birthday!",
+      "userId": 5,
+      "address": "222 Super Maximum St.",
+      "date": "2020-12-17",
+      "time": "16:00",
+      "description": "Mommy is celebrating her 40th Birthday! I hope y'all can come! Aunt Silvia will be here!",
+      "eventcode": "MOMMYS",
+      "id": 2
     }
   ],
   "participations": [
     {
-      "eventId": 1,
-      "userId": 1,
+      "eventId": 2,
+      "userId": 5,
       "participationStatus": 1,
-      "id": 1
+      "id": 5
     },
     {
-      "userId": 2,
-      "eventId": 1,
-      "participationId": 2,
-      "participationStatus": 4,
-      "id": 2
-    },
-    {
-      "userId": 3,
-      "eventId": 1,
+      "userId": 6,
+      "eventId": 2,
+      "participationId": 6,
       "participationStatus": 2,
-      "id": 3
+      "id": 6
     },
     {
-      "userId": 4,
-      "eventId": 1,
-      "participationId": 4,
-      "participationStatus": 4,
-      "id": 4
+      "userId": 7,
+      "eventId": 2,
+      "participationId": 7,
+      "participationStatus": 3,
+      "id": 7
+    },
+    {
+      "userId": 8,
+      "eventId": 2,
+      "participationId": 8,
+      "participationStatus": 2,
+      "id": 8
     }
   ],
   "news": [
@@ -79,6 +79,15 @@
       "hasPicture": true,
       "pictureUrl": "https://res.cloudinary.com/dqhswasf6/image/upload/v1594104722/testes/qn3sa6i0gheuwlhu5bux.jpg",
       "id": 1
+    },
+    {
+      "title": "Aunt Silvia is so happy!",
+      "eventId": 2,
+      "userId": null,
+      "content": "Look at this smile!",
+      "hasPicture": true,
+      "pictureUrl": "https://res.cloudinary.com/dqhswasf6/image/upload/v1594129011/testes/htd3tgmqdslkx9a0tzyh.jpg",
+      "id": 2
     }
   ]
 }
