@@ -9,7 +9,7 @@ export const Comeback = () => {
   let history = useHistory();
   return (
     <>
-      <button className="--button" onClick={() => history.goBack()}>⇦</button>
+      <button className="--button --return" onClick={() => history.goBack()}>⇦</button>
     </>
   );
 };
@@ -82,7 +82,7 @@ export const getStorageSession  = () => {
     lastname: sessionStorage.getItem("lastname"),
     email: sessionStorage.getItem("email"),
     eventId: parseInt(sessionStorage.getItem("eventId")),
-    participationId: parseInt(sessionStorage.getItem("articipationId")),
+    participationId: parseInt(sessionStorage.getItem("participationId")),
     participationStatus: parseInt(sessionStorage.getItem("participationStatus"))
   }
 }
@@ -97,7 +97,7 @@ export const getParticipationStorageSession  = () => {
 }
 
 
-export const getUserStorageSession  = () => {
+export const getStorageUserSession  = () => {
   return {
     userId: parseInt(sessionStorage.getItem("userId")),
     firstname: sessionStorage.getItem("firstname"),

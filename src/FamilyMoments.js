@@ -4,14 +4,14 @@ import React, { useState, useEffect } from 'react';
 
 // Moods
 import ApplicationViews from './components/ApplicationViews';
-import NavBar from "./components/NavBar"
+
 import SideBar from "./components/SideBar/SideBar"
 import API from './module/dataManager'
 import {
   setStorageSession,
   getStorageSession,
   getSessionUserId,
-  getUserStorageSession
+  getStorageUserSession
 } from './Helpers'
 import "./App.css"
 
@@ -29,8 +29,8 @@ function FamilyMoments(props) {
   // Set the user ID in the register
   const setUser = (user, participation) => {
     console.log("setUser: ", user, participation)
-    setStorageSession({...user, participation})
-    setSession(getStorageSession())
+    setStorageSession({...user, participation}) // Primeiro edita o Storage
+    setSession(getStorageSession()) // Depois atualiza session usando o storage
     setHasUser(isAuthenticated());
   }
 
@@ -39,7 +39,7 @@ function FamilyMoments(props) {
     requester.eventId = eventId;
     requester.participationStatus = status;
     requester = await API.put("participations", requester.id, requester);
-    setUser(getUserStorageSession(), requester)
+    setUser(getStorageUserSession(), requester)
   }
 
   const changeParticipationStatus2 = async (status, userId) => {
@@ -73,7 +73,7 @@ function FamilyMoments(props) {
   /*                end LOGIN FEATURES                           */
 
   return <>
-    { isAuthenticated && <SideBar />}
+    { hasUser && <SideBar hasUser={hasUser} />}
     <div className="--main">
       <div className="--top-side"></div>
       <ApplicationViews trigger={trigger} tools={tools} setUser={setUser} hasUser={hasUser} session={session} setSession={setSession} changeParticipationStatus2={changeParticipationStatus2} changeParticipationStatus={changeParticipationStatus} />

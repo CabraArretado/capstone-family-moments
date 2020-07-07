@@ -24,10 +24,12 @@ const Login = (props) => {
     const handleLogin = async (e) => {
         e.preventDefault();
         let tempo = await API.getWhere("users", "email", credentials.email)
+        let partTempo = await API.getWhere("participations", "userId", tempo[0].id)
+        console.log(tempo, partTempo)
 
         // Checks if e-mail exist and 
         if (tempo.length === 1 && credentials.password === tempo[0].password) {
-            props.setUser(tempo[0])
+            props.setUser(tempo[0], partTempo[0])
             props.history.push("/home")
         } else {
             alert("Email or password wrong!")
@@ -35,22 +37,22 @@ const Login = (props) => {
     }
 
     return <>
-        <div className="container d-flex justify-content-center">
-            <Jumbotron className="superbox mt-5">
             <Comeback />
-                <h1 className="display-3">Log In</h1>
+        <div className="container d-flex justify-content-center">
+            <div className="superbox --yellow-bg mt-5">
+                <h1 className="--page-title mb-3">Login</h1>
                 <Form onSubmit={handleLogin}>
                     <FormGroup>
-                        <Label for="email">Email</Label>
+                        {/* <Label for="email">Email</Label> */}
                         <Input onChange={handleChange} type="email" name="email" id="email" placeholder="Email" />
                     </FormGroup>
                     <FormGroup>
-                        <Label for="password">Password</Label>
+                        {/* <Label for="password">Password</Label> */}
                         <Input className="" onChange={handleChange} type="password" name="password" id="password" placeholder="Password" />
                     </FormGroup>
-                    <Button type="submit" className="">Login</Button>
+                    <button className="--button" type="submit">Login</button>
                 </Form>
-            </Jumbotron>
+            </div>
         </div>
     </>
 }

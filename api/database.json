@@ -1,123 +1,45 @@
 {
   "users": [
     {
-      "firstname": "Adam",
-      "lastname": "Smith",
-      "email": "adam@email.com",
-      "password": "123",
-      "eventId": 1,
-      "participationStatus": 1,
-      "id": 1
-    },
-    {
-      "firstname": "John",
-      "lastname": "Smith",
-      "email": "john@email",
-      "password": "123",
-      "eventId": 1,
-      "participationStatus": 2,
-      "id": 2
-    },
-    {
-      "firstname": "Sofia",
-      "lastname": "Smith",
-      "email": "sofia@email",
-      "password": "123",
-      "eventId": 1,
-      "participationStatus": 2,
-      "id": 4
-    },
-    {
-      "firstname": "Vivian",
-      "lastname": "Smith",
-      "email": "vivan@email",
-      "password": "123",
-      "eventId": 1,
-      "participationStatus": 4,
-      "id": 5
-    },
-    {
-      "firstname": "George",
-      "lastname": "Smith",
-      "email": "george@email",
-      "password": "123",
-      "eventId": 2,
-      "participationStatus": 1,
-      "id": 6
+      "firstname": "a",
+      "lastname": "a",
+      "email": "b@b",
+      "password": "b",
+      "id": 11
     },
     {
       "firstname": "a",
       "lastname": "a",
       "email": "a@a",
       "password": "a",
-      "id": 7
+      "id": 12
     },
     {
-      "firstname": "1",
-      "lastname": "1",
-      "email": "1@1",
-      "password": "1",
-      "id": 8
-    },
-    {
-      "firstname": "ff",
-      "lastname": "f",
-      "email": "f@f",
-      "password": "f",
-      "id": 9
+      "firstname": "g",
+      "lastname": "g",
+      "email": "g@g",
+      "password": "g",
+      "id": 13
     }
   ],
   "participations": [
     {
-      "id": 1
+      "eventId": 5,
+      "userId": 11,
+      "participationStatus": 1,
+      "id": 11
     },
     {
-      "userId": 8,
-      "eventId": 0,
-      "participationStatus": 0,
-      "id": 2
+      "eventId": 9,
+      "userId": 12,
+      "participationStatus": 1,
+      "id": 12
     },
     {
-      "userId": 9,
+      "userId": 13,
       "eventId": 0,
       "participationStatus": 0,
-      "id": 3
-    },
-    {
-      "userId": 10,
-      "eventId": 0,
-      "participationStatus": 0,
-      "id": 4
-    },
-    {
-      "userId": 7,
-      "eventId": 0,
-      "participationStatus": 0,
-      "id": 5
-    },
-    {
-      "userId": 7,
-      "eventId": 0,
-      "participationStatus": 0,
-      "id": 6
-    },
-    {
-      "userId": 7,
-      "eventId": 0,
-      "participationStatus": 0,
-      "id": 7
-    },
-    {
-      "userId": 8,
-      "eventId": 0,
-      "participationStatus": 0,
-      "id": 8
-    },
-    {
-      "userId": 9,
-      "eventId": 0,
-      "participationStatus": 0,
-      "id": 9
+      "id": 13
     }
   ],
   "events": [
@@ -141,6 +63,76 @@
       "description": "Let's celebrate with Sonia",
       "eventcode": "COLLEG",
       "id": 2
+    },
+    {
+      "name": "a",
+      "userId": 7,
+      "address": "a",
+      "date": "2020-07-16",
+      "time": "21:33",
+      "description": "1",
+      "eventcode": "111111",
+      "id": 3
+    },
+    {
+      "name": "a",
+      "userId": 7,
+      "address": "a",
+      "date": "2020-07-02",
+      "time": "21:37",
+      "description": "a",
+      "eventcode": "11111a",
+      "id": 4
+    },
+    {
+      "name": "b",
+      "userId": 11,
+      "address": "b",
+      "date": "2020-07-09",
+      "time": "23:35",
+      "description": "b",
+      "eventcode": "bbbbbb",
+      "id": 5
+    },
+    {
+      "name": "a",
+      "userId": 12,
+      "address": "a",
+      "date": "2020-07-01",
+      "time": "12:40",
+      "description": "a",
+      "eventcode": "aaaaaa",
+      "id": 6
+    },
+    {
+      "name": "a",
+      "userId": 12,
+      "address": "a",
+      "date": "2020-06-30",
+      "time": "23:42",
+      "description": "a",
+      "eventcode": "aaaaa2",
+      "id": 7
+    },
+    {
+      "name": "aa",
+      "userId": 12,
+      "address": "aa",
+      "date": "2020-06-30",
+      "time": "21:45",
+      "description": "a",
+      "eventcode": "gggggg",
+      "id": 8
+    },
+    {
+      "name": "f",
+      "userId": 12,
+      "address": "f",
+      "date": "2020-07-02",
+      "time": "23:54",
+      "description": "f",
+      "eventcode": "ffffff",
+      "id": 9
     }
   ],
   "news": [

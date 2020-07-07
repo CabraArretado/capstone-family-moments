@@ -11,7 +11,9 @@ import {
 // moods
 import API from "../../module/dataManager.js";
 import {
-    Comeback
+    Comeback,
+    setStorageParticipationSession,
+    getStorageUserSession
 } from "../../Helpers";
 
 const JoinEvent = (props) => {
@@ -22,6 +24,10 @@ const JoinEvent = (props) => {
     const [isEventLoaded, setIsEventLoaded] = useState(false); // Check if the event is loaded on data
     const [eventCode, setEventCode] = useState(""); // Event code
     const [event, setEvent] = useState({}); // event itself
+
+
+    let session = props.session
+    let setUser = props.setUser
 
     // Handle changes in eventcode
     const handleChange = (e) => {

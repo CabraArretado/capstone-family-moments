@@ -29,6 +29,7 @@ const ApplicationViews = (props) => {
     const changeParticipationStatus2 = props.changeParticipationStatus2
 
 
+
     return (
         <>
 
@@ -140,7 +141,7 @@ const ApplicationViews = (props) => {
                     if (!hasUser) {
                         return <Redirect to="/" />;
                     }
-                    return <RegisterEvent changeParticipationStatus={changeParticipationStatus} setUser={setUser} {...props} />;
+                    return <RegisterEvent changeParticipationStatus={changeParticipationStatus} setUser={setUser} session={session} setSession={setSession} {...props} />;
                 }}
             />
             <Route
