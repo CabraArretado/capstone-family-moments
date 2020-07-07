@@ -24,11 +24,10 @@ const Login = (props) => {
     const handleLogin = async (e) => {
         e.preventDefault();
         let tempo = await API.getWhere("users", "email", credentials.email)
-        let partTempo = await API.getWhere("participations", "userId", tempo[0].id)
-        console.log(tempo, partTempo)
-
+        
         // Checks if e-mail exist and 
         if (tempo.length === 1 && credentials.password === tempo[0].password) {
+            let partTempo = await API.getWhere("participations", "userId", tempo[0].id)
             props.setUser(tempo[0], partTempo[0])
             props.history.push("/home")
         } else {

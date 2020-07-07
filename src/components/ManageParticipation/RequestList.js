@@ -22,7 +22,8 @@ const RequestList = (props) => {
     const session = getStorageSession()
 
     const getAllRequests = async () => {
-        let requestList = await API.getWhereAnd("users", "eventId", session.eventId, "participationStatus", 3)
+        let requestList = await API.getWhereAndExpand("participations", "eventId", session.eventId, "participationStatus", 3, "user")
+        console.log(requestList)
         setRequests(requestList)
     }
 

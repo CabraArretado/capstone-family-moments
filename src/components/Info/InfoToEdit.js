@@ -29,8 +29,8 @@ const InfoToEdit = (props) => {
     const [isLoading, setIsLoading] = useState(false)
     const [informacao, setInformacao] = useState({
         name: "" ,
-        id: null, 
-        userId: null, 
+        id: "", 
+        userId: "", 
         address: "", 
         date: "", 
         time: "", 

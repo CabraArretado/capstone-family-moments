@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from "react-router-dom";
 import {
-    Jumbotron,
-    Button,
     Form,
     FormGroup,
     Input
@@ -12,7 +10,7 @@ import {
 import API from "../../module/dataManager.js";
 import {
     Comeback,
-    setStorageParticipationSession,
+    getParticipationStorageSession,
     getStorageUserSession
 } from "../../Helpers";
 
@@ -38,7 +36,7 @@ const JoinEvent = (props) => {
 
     // Search for event code
     const checkEventCode = async () => {
-        const eventQuery = await API.getWhereExpand("events", "eventcode", eventCode, "user");
+        const eventQuery = await API.getWhere("events", "eventcode", eventCode);
         if (eventQuery.length === 0) {
             setIsEventLoaded(false);
             setNothingFound(true);
@@ -61,42 +59,47 @@ const JoinEvent = (props) => {
     // Request the user data from server, add eventId and participationStatus as keys, and send back
     const handleJoin = async (e) => {
         e.preventDefault();
-        props.changeParticipationStatus(event.id, 3)
+        let superSession = getParticipationStorageSession()
+        superSession.eventId = event.id
+        superSession.participationStatus = 3
+        let userT = await API.get("users", session.userId)
+        let partT = await API.put("participations", session.participationId, superSession)
+        // No probs up to here
+        setUser(userT, partT)
         props.history.push("/home")
     }
 
     return <>
-        <Comeback />
-        <Jumbotron className="container mt-5">
-            <h5 className="display-4">Join Gathering</h5>
+        <div className="container --yellow-bg">
+            <h5 className="--page-title">Join Gathering</h5>
             <p>Please enter the EVENT CODE provided by the gathering author</p>
             <hr />
             <Form onSubmit={checkOnClick}>
-                <FormGroup className="form-row">
-                    <Input className="col" onChange={handleChange} type="text" name="eventcode" id="eventcode" placeholder="Enter the event code" />
-                    <Button disabled={isLoading} className="col" type="submit">Search</Button>
+                <FormGroup className="form-row p-4">
+                    <Input className="col my-2" onChange={handleChange} type="text" name="eventcode" id="eventcode" placeholder="Event Code" />
+                    <button disabled={isLoading} className="col --button" type="submit">Search</button>
                 </FormGroup>
             </Form>
             {
                 isEventLoaded && <div>
-                    <div>
+                    <div className="--event-found">
                         <h4>{event.name}</h4>
-                        <h6>by: {event.user.username}</h6>
                         <h5>{event.date} at {event.time}</h5>
                         <h5>Address: <span>{event.address}</span> </h5>
                         <h5> {event.description} </h5>
                     </div>
-                    <Button onClick={handleJoin}>Request Participation!</Button>
+                    <button className="--button" onClick={handleJoin}>Request Participation!</button>
                 </div>
             }
 
             {
                 nothingFound && <div>
-                    <h4>No event with such code on the database. Check the Event Code.</h4>
-                    <p>If the problem persist please contact the adminsitrador of the event</p>
+                    <h4 className="superbold">No event with such code on the database. Check the Event Code.</h4>
+                    <p className="superbold">If the problem persist please contact the adminsitrador of the event</p>
                 </div>
             }
-        </Jumbotron>
+        </div>
+        <Comeback />
     </>
 };
 

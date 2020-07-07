@@ -29,7 +29,9 @@ function FamilyMoments(props) {
   // Set the user ID in the register
   const setUser = (user, participation) => {
     console.log("setUser: ", user, participation)
-    setStorageSession({...user, participation}) // Primeiro edita o Storage
+    let part = {participationId: participation.id, eventId: participation.eventId, participationStatus: participation.participationStatus}
+    setStorageSession({...user, ...part}) // Primeiro edita o Storage
+    // console.log("setUser after storage: ",getStorageSession())
     setSession(getStorageSession()) // Depois atualiza session usando o storage
     setHasUser(isAuthenticated());
   }
@@ -42,10 +44,10 @@ function FamilyMoments(props) {
     setUser(getStorageUserSession(), requester)
   }
 
-  const changeParticipationStatus2 = async (status, userId) => {
-    let requester = await API.get("users", userId);
+  const changeParticipationStatus2 = async (id, status) => {
+    let requester = await API.get("participations", id);
     requester.participationStatus = status;
-    requester = await API.put("users", requester.id, requester);
+    requester = await API.put("participations", id, requester);
   }
   const reloadUser = async () => {
     console.log("Reloading user")

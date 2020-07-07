@@ -137,7 +137,7 @@ const NewsFeed = () => {
                         {loading ? (
                             <h3>Loading...</h3>
                         ) : (
-                                <img alt="" src={image} style={{ width: '300px' }} />
+                                <img alt="" src={image} className="img-fluid" />
                             )}
                     </div>
                     <button className="--button" type="submit">Post</button>

@@ -36,10 +36,10 @@ const InfoParticipant = () => {
     useEffect(() => { callBacks() }, [])
 
     return <>
-        <Jumbotron className="container mt-5">
-            <h2>Welcome!</h2> 
-            <p>You are curently enrolled on {event.name}!</p>
-                <div>
+        <div className="container --yellow-bg">
+            <h2 className="--page-title">Welcome!</h2> 
+            <p className="superbold">You are curently enrolled on {event.name}!</p>
+                <div className="--letter">
                     <p> The gathering information </p>
                     <h4>{event.name}</h4>
                     <h6>by: {event.user.firstname + " " + event.user.lastname}</h6>
@@ -47,7 +47,7 @@ const InfoParticipant = () => {
                     <h5>Address: <span>{event.address}</span> </h5>
                     <h5> {event.description} </h5>
                 </div>
-            </Jumbotron>
+            </div>
     </>
 }
 

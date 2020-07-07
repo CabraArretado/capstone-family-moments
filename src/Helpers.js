@@ -38,13 +38,14 @@ export const generalHandleChanges = (event, array, setArray) => {
 
 //  SET USER
 export const setStorageSession = (user) => {
+  // console.log(user)
   sessionStorage.setItem("userId", user.id)
   sessionStorage.setItem("firstname",user.firstname)
   sessionStorage.setItem("lastname",user.lastname)
   sessionStorage.setItem("email",user.email)
-  sessionStorage.setItem("participationId",user.participation.id)
-  sessionStorage.setItem("eventId",user.participation.eventId)
-  sessionStorage.setItem("participationStatus",user.participation.participationStatus)
+  sessionStorage.setItem("participationId",user.participationId)
+  sessionStorage.setItem("eventId",user.eventId)
+  sessionStorage.setItem("participationStatus",user.participationStatus)
 }
 
 export const setStorageUserSession = (user) => {
@@ -55,6 +56,7 @@ export const setStorageUserSession = (user) => {
 }
 
 export const setStorageParticipationSession = (participation) => {
+  console.log(participation)
   sessionStorage.setItem("participationId", participation.id)
   sessionStorage.setItem("eventId",participation.eventId)
   sessionStorage.setItem("participationStatus",participation.participationStatus)
@@ -91,7 +93,7 @@ export const getParticipationStorageSession  = () => {
   return {
     userId: parseInt(sessionStorage.getItem("userId")),
     eventId: parseInt(sessionStorage.getItem("eventId")),
-    participationId: parseInt(sessionStorage.getItem("articipationId")),
+    participationId: parseInt(sessionStorage.getItem("participationId")),
     participationStatus: parseInt(sessionStorage.getItem("participationStatus"))
   }
 }

@@ -88,7 +88,7 @@ const ApplicationViews = (props) => {
 
                     // Event owner
                     else if (session.participationStatus === 1) {
-                        return <Info changeParticipationStatus={changeParticipationStatus} {...props} />
+                        return <Info changeParticipationStatus={changeParticipationStatus} setUser={setUser} session={session} setSession={setSession} {...props} />
                     }
 
                     // Event participant
@@ -114,7 +114,7 @@ const ApplicationViews = (props) => {
                     if (!hasUser) {
                         return <Redirect to="/" />;
                     }
-                    return <JoinEvent changeParticipationStatus={changeParticipationStatus} setEventId={setEventId}{...props} />;
+                    return <JoinEvent changeParticipationStatus={changeParticipationStatus} session={session} setUser={setUser}{...props} />;
                 }}
             />
 

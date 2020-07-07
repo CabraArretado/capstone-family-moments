@@ -1,158 +1,84 @@
 {
   "users": [
     {
-      "firstname": "a",
-      "lastname": "a",
-      "email": "b@b",
-      "password": "b",
-      "id": 11
-    },
-    {
-      "firstname": "a",
-      "lastname": "a",
+      "firstname": "Felipe",
+      "lastname": "Smith",
       "email": "a@a",
       "password": "a",
-      "id": 12
+      "id": 1
     },
     {
-      "firstname": "g",
-      "lastname": "g",
-      "email": "g@g",
-      "password": "g",
-      "id": 13
-    }
-  ],
-  "participations": [
-    {
-      "eventId": 5,
-      "userId": 11,
-      "participationStatus": 1,
-      "id": 11
+      "firstname": "1",
+      "lastname": "1",
+      "email": "2@2",
+      "password": "2",
+      "id": 2,
+      "participationStatus": 2
     },
     {
-      "eventId": 9,
-      "userId": 12,
-      "participationStatus": 1,
-      "id": 12
+      "firstname": "3",
+      "lastname": "3",
+      "email": "3@3",
+      "password": "3",
+      "id": 3
     },
     {
-      "userId": 13,
-      "eventId": 0,
-      "participationStatus": 0,
-      "id": 13
+      "firstname": "aa",
+      "lastname": "a",
+      "email": "a@aa",
+      "password": "a",
+      "id": 4
     }
   ],
   "events": [
     {
-      "name": "Aunt Silvia's 70th Birthday",
+      "name": "Felipe's bdayyy",
       "userId": 1,
-      "address": "1500 Someone St",
-      "date": "2020-06-11",
-      "time": "08:32",
-      "description": "Aunt Silvia Birthday coming! I hope everyone can join us!",
-      "eventcode": "ASBDAY",
-      "isOpen": false,
+      "address": "123 Imaginary ",
+      "date": "2020-07-15",
+      "time": "00:11",
+      "description": "Meme is gooddd",
+      "eventcode": "111111",
+      "id": 1
+    }
+  ],
+  "participations": [
+    {
+      "eventId": 1,
+      "userId": 1,
+      "participationStatus": 1,
       "id": 1
     },
     {
-      "name": "Sonia's College Graduation",
-      "userId": 6,
-      "address": "999 Super St",
-      "date": "2020-09-20",
-      "time": "08:30",
-      "description": "Let's celebrate with Sonia",
-      "eventcode": "COLLEG",
+      "userId": 2,
+      "eventId": 1,
+      "participationId": 2,
+      "participationStatus": 4,
       "id": 2
     },
     {
-      "name": "a",
-      "userId": 7,
-      "address": "a",
-      "date": "2020-07-16",
-      "time": "21:33",
-      "description": "1",
-      "eventcode": "111111",
+      "userId": 3,
+      "eventId": 1,
+      "participationStatus": 2,
       "id": 3
     },
     {
-      "name": "a",
-      "userId": 7,
-      "address": "a",
-      "date": "2020-07-02",
-      "time": "21:37",
-      "description": "a",
-      "eventcode": "11111a",
+      "userId": 4,
+      "eventId": 1,
+      "participationId": 4,
+      "participationStatus": 4,
       "id": 4
-    },
-    {
-      "name": "b",
-      "userId": 11,
-      "address": "b",
-      "date": "2020-07-09",
-      "time": "23:35",
-      "description": "b",
-      "eventcode": "bbbbbb",
-      "id": 5
-    },
-    {
-      "name": "a",
-      "userId": 12,
-      "address": "a",
-      "date": "2020-07-01",
-      "time": "12:40",
-      "description": "a",
-      "eventcode": "aaaaaa",
-      "id": 6
-    },
-    {
-      "name": "a",
-      "userId": 12,
-      "address": "a",
-      "date": "2020-06-30",
-      "time": "23:42",
-      "description": "a",
-      "eventcode": "aaaaa2",
-      "id": 7
-    },
-    {
-      "name": "aa",
-      "userId": 12,
-      "address": "aa",
-      "date": "2020-06-30",
-      "time": "21:45",
-      "description": "a",
-      "eventcode": "gggggg",
-      "id": 8
-    },
-    {
-      "name": "f",
-      "userId": 12,
-      "address": "f",
-      "date": "2020-07-02",
-      "time": "23:54",
-      "description": "f",
-      "eventcode": "ffffff",
-      "id": 9
     }
   ],
   "news": [
     {
-      "title": "Aunt Silvia is Excited",
+      "title": "Tia Jurema",
       "eventId": 1,
       "userId": 1,
-      "content": "Look at that smile!",
+      "content": "Olha ela feliz",
       "hasPicture": true,
-      "pictureUrl": "https://res.cloudinary.com/dqhswasf6/image/upload/v1593184411/testes/ky5ngbngrbc9yz4iawah.jpg",
+      "pictureUrl": "https://res.cloudinary.com/dqhswasf6/image/upload/v1594104722/testes/qn3sa6i0gheuwlhu5bux.jpg",
       "id": 1
-    },
-    {
-      "title": "Local",
-      "eventId": 1,
-      "userId": 1,
-      "content": "hey, the party is gonna be here",
-      "hasPicture": true,
-      "pictureUrl": "https://res.cloudinary.com/dqhswasf6/image/upload/v1593184435/testes/zuez2swiergm9tjanad4.jpg",
-      "id": 2
     }
   ]
 }

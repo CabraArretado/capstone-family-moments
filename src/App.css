@@ -180,6 +180,19 @@ html body {
   /* className="--superbold" */
 }
 
+.--superboldBIG {
+  font-weight: bolder;
+  font-size: 30px;
+  font-family: 'Roboto Slab', serif;
+  /* className="--superbold" */
+}
+
+.--letter {
+  font-family: 'Roboto Slab', serif;
+  font-weight: bolder;
+  color: #942911;
+}
+
 .--button {
   border-radius: 42px;
   font-family: 'Shadows Into Light', serif;
@@ -204,4 +217,11 @@ html body {
   height: 70px;
   padding: 10px;
   text-align: center;
+}
+
+.--event-found {
+  border-radius: 42px;
+  color: white;
+  border:1px solid #f6cb09;
+  margin: 5px;
 }
